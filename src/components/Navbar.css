@@ -35,13 +35,14 @@
 }
 
 .nav-menu {
-    display: grid;
+    display: flex;
+    /* grid; */
     grid-template-columns: repeat(4, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;
     width: 60vw;
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 2rem;
 }
 

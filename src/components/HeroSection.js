@@ -9,8 +9,8 @@ function HeroSection() {
             <video autoPlay loop muted>
                 <source src="/videos/video-2.mp4" type='video/mp4' />
             </video>
-            <h1>ADVENTURE AWAITS</h1>
-            <p>What are you waiting for?</p>
+            <h1>ALLTELIER</h1>
+            <p>Welcome!</p>
             <div className='hero-btns'>
                 <Button className='btns'
                     buttonStyle='btn--outline'

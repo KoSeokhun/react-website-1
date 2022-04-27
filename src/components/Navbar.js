@@ -50,6 +50,23 @@ function Navbar() {
                 Products
               </Link>
             </li>
+            {/* 추가 */}
+            <li className='nav-item'>
+              <Link to='/community' className='nav-links' onClick={closeMobileMenu}>
+                Community
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to='/store' className='nav-links' onClick={closeMobileMenu}>
+                Store
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to='/wtg' className='nav-links' onClick={closeMobileMenu}>
+                Wtg
+              </Link>
+            </li>
+            {/* 추가 */}
             <li className='nav-item'>
               <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
                 Sign Up

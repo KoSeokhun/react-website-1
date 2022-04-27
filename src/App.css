@@ -8,6 +8,10 @@
 .home,
 .services,
 .products,
+/* 추가 */
+.community,
+.store,
+.wtg,
 .sign-up {
     display: flex;
     height: 90vh;
@@ -33,6 +37,39 @@
     color: #fff;
     font-size: 100px;
 }
+
+.community {
+    /* 추가 */
+    background-image: url('/public/images/img-5.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 100px;
+
+}
+
+.store {
+    /* 추가 */
+    background-image: url('/public/images/img-6.jpg');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 100px;
+}
+
+.wtg {
+    /* 추가 */
+    background-image: url('/public/images/img-7.jpg');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 100px;
+}
+
+
 
 .sign-up {
     background-image: url('/public/images/img-8.jpg');
