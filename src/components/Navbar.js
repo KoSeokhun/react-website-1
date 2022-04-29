@@ -40,16 +40,6 @@ function Navbar() {
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
-                Services
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
-                Products
-              </Link>
-            </li>
             {/* 추가 */}
             <li className='nav-item'>
               <Link to='/community' className='nav-links' onClick={closeMobileMenu}>
