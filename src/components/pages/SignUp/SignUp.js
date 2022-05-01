@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import '../../App.css';
 
 export default function SignUp() {
     return <h1 className='sign-up'>
-        SIGN UP
+        <Link to='/sign-in'>SUBMIT</Link>
     </h1>;
 }

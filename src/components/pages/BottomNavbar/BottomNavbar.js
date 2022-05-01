@@ -1,43 +1,40 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './BottomNavbar.css';
 
 function BottomNavbar() {
-    const [click, setClick] = useState(1);
-    console.log(click);
-
-    const clickedButton = (id) => setClick(id);
 
     return (
         <>
             <nav className='bottom-navbar'>
                 <div className='bottom-navbar-container'>
-                    <ul className={click ? 'bottom-nav-menu active' : 'bottom-nav-menu'}>
+                    <ul className='bottom-nav-menu active'>
+                        {/* {click ? 'bottom-nav-menu active' : 'bottom-nav-menu'} */}
                         <li className='bottom-nav-item'>
-                            <Link to='/' className='bottom-nav-links' onClick={() => { clickedButton('1'); }}>
+                            <NavLink to='/' className='bottom-nav-links' >
                                 <i className="fa-solid fa-house" />
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className='bottom-nav-item'>
-                            <Link to='/community' className='bottom-nav-links' onClick={() => { clickedButton('2'); }}>
+                            <NavLink to='/community' className='bottom-nav-links' >
                                 <i className="fa-solid fa-people-group" />
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className='bottom-nav-item'>
-                            <Link to='/wtg' className='bottom-nav-links' onClick={() => { clickedButton('3'); }}>
+                            <NavLink to='/wtg' className='bottom-nav-links' >
                                 <i className="fa-solid fa-wifi" />&nbsp;<i className="fa-solid fa-bicycle" />&nbsp;<i className="fa-solid fa-building" />
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* 추가 */}
                         <li className='bottom-nav-item'>
-                            <Link to='/store' className='bottom-nav-links' onClick={() => { clickedButton('4'); }}>
+                            <NavLink to='/store' className='bottom-nav-links' >
                                 <i className="fa-solid fa-store" />
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className='bottom-nav-item'>
-                            <Link to='/profile' className='bottom-nav-links' onClick={() => { clickedButton('5'); }}>
+                            <NavLink to='/profile' className='bottom-nav-links' >
                                 <i className="fa-solid fa-user" />
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

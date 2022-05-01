@@ -1,6 +1,6 @@
 import '../../App.css';
-import HeroSection from '../HeroSection';
-import Cards from '../Cards';
+import HeroSection from '../HeroSection/HeroSection';
+import Cards from '../commons/Cards/Cards';
 
 function Home() {
     return (

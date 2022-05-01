@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import BottomNavbar from './components/BottomNavbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './components/pages/Home';
-import Services from './components/pages/Services';
-import Products from './components/pages/Products';
-import SignUp from './components/pages/SignUp';
-import Community from './components/pages/Community';
-import Store from './components/pages/Store';
-import Wtg from './components/pages/Wtg';
+import Navbar from './pages/Navbar/Navbar';
+import BottomNavbar from './pages/BottomNavbar/BottomNavbar';
+import Home from './pages/Home/Home';
+import Services from './pages/Services/Services';
+import Products from './pages/Products/Products';
+import SignUp from './pages/SignUp/SignUp';
+import Community from './pages/Community/Community';
+import Store from './pages/Store/Store';
+import Wtg from './pages/Wtg/Wtg';
+import SignIn from './pages/SignIn/SignIn';
+import Profile from './pages/Profile/Profile';
 
 function App() {
+  // BottomNavbar on, off
   const [bottomNavbar, setBottomNavbar] = useState(false);
 
+  // 너비가 960 이하일 때만 true
   const showBottomNavbar = () => {
     if (window.innerWidth <= 960) {
       setBottomNavbar(true);
@@ -22,10 +26,12 @@ function App() {
     }
   };
 
+  // 일단 페이지가 렌더링된 후에 한 번 실행함. 
   useEffect(() => {
     showBottomNavbar();
   }, []);
 
+  // 사용자가 'resize'하는 것을 감지하여 showBottomNavbar를 실행함.
   window.addEventListener('resize', showBottomNavbar);
 
   return (
@@ -38,10 +44,12 @@ function App() {
           <Route path='/community' element={<Community />} />
           <Route path='/store' element={<Store />} />
           <Route path='/wtg' element={<Wtg />} />
+          <Route path='/profile' element={<Profile />} />
           {/* 추가 */}
           <Route path='/services' element={<Services />} />
           <Route path='/products' element={<Products />} />
           <Route path='/sign-up' element={<SignUp />} />
+          <Route path='/sign-in' element={<SignIn />} />
         </Routes>
         {bottomNavbar && <BottomNavbar />}
       </Router>
