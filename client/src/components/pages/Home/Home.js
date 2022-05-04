@@ -7,11 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import Auth from '../../../hoc/auth';
 
 function Home() {
-    useEffect(() => {
-        axios.get('/api/hello')
-            .then(response => console.log(response.data))
-    }, [])
-
     const navigate = useNavigate();
 
     const onClickHandler = () => {
@@ -29,14 +24,6 @@ function Home() {
         <>
             <HeroSection />
             <Cards />
-            <div style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                width: '100%', height: '100vh'
-            }}>
-                <button onClick={onClickHandler}>
-                    로그아웃
-                </button>
-            </div>
         </>
     );
 }
