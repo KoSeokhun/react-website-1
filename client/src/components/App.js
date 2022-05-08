@@ -11,7 +11,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Community from './pages/Community/Community';
 import Store from './pages/Store/Store';
 import Wtg from './pages/Wtg/Wtg';
-import SignIn from './pages/SignIn/SignIn';
+import SignIn from './pages/SignIn/General/SignIn';
 import Profile from './pages/Profile/Profile';
 
 function App() {

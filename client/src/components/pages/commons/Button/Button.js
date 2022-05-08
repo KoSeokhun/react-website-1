@@ -14,12 +14,12 @@ export const Button = ({
     buttonSize,
     path,
 }) => {
-    console.log(children);
-    console.log(type);
-    console.log(onClick);
-    console.log(buttonStyle);
-    console.log(buttonSize);
-    console.log(path);
+    // console.log(children);
+    // console.log(type);
+    // console.log(onClick);
+    // console.log(buttonStyle);
+    // console.log(buttonSize);
+    // console.log(path);
 
     const checkButtonStyle = STYLES.includes(buttonStyle)
         ? buttonStyle
