@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../../../hoc/auth";
 import Kakao from "../Kakao/Kakao";
-import Google from "../Google/Google";
+import Naver from 'react-naver-login';
 
 const { Title } = Typography;
 
@@ -153,69 +153,13 @@ function SignIn() {
                     );
                 }}
             </Formik>
-            <Kakao
-                oAuthLoginHandler={(values) => {
-                    //   console.log("values : " + JSON.stringify(values));
-                    let dataToSubmit = {
-                        oAuthId: values.profile,
-                        name: values.profile.properties.nickname,
-                        lastName: values.profile.properties.nickname,
-                        email: values.profile.kakao_account.email,
-                        image: values.profile.properties.profile_image,
-                    };
-                    //   console.log("dataToSubmit : " + JSON.stringify(dataToSubmit));
-
-                    dispatch(loginUser(dataToSubmit))
-                        .then(response => {
-                            if (response.payload.loginSuccess) {
-                                window.localStorage.setItem('userId', response.payload.userId);
-                                // if (rememberMe === true) {
-                                //     window.localStorage.setItem('rememberMe', values.email);
-                                // } else {
-                                //     localStorage.removeItem('rememberMe');
-                                // }
-                                // props.history.push("/");
-                                navigate('/');
-                            } else {
-                                setFormErrorMessage('Check out your Account or Password again')
-                            }
-                        })
-                        .catch(err => {
-                            setFormErrorMessage('Check out your Account or Password again')
-                            setTimeout(() => {
-                                setFormErrorMessage("")
-                            }, 3000);
-                        });
-                }}
-            />
-            {/* <Google
-                oAuthLoginHandler={(values) => {
-                    console.log("values : " + JSON.stringify(values));
-                    let dataToSubmit = {
-                        oAuthId: values.profile,
-                        name: values.profile.properties.nickname,
-                        lastName: values.profile.properties.nickname,
-                        email: values.profile.kakao_account.email,
-                        image: values.profile.properties.profile_image,
-                    };
-                    //   console.log("dataToSubmit : " + JSON.stringify(dataToSubmit));
-
-                    dispatch(loginUser(dataToSubmit))
-                        .then(response => {
-                            if (response.payload.loginSuccess) {
-                                window.localStorage.setItem('userId', response.payload.userId);
-                                navigate('/');
-                            } else {
-                                setFormErrorMessage('Check out your Account or Password again')
-                            }
-                        })
-                        .catch(err => {
-                            setFormErrorMessage('Check out your Account or Password again')
-                            setTimeout(() => {
-                                setFormErrorMessage("")
-                            }, 3000);
-                        });
-                }}
+            <Kakao />
+            {/* <Naver
+                clientId="DNvyuXQ14_LqW1t7FBfQ"
+                callbackUrl="http://127.0.0.1:3001/auth/naver/callback"
+                render={(props) => <div onClick={props.onClick}>Naver Login</div>}
+                onSuccess={(naverUser) => console.log(naverUser)}
+                onFailure={(result) => console.error(result)}
             /> */}
         </>
     );
