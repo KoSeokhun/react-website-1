@@ -25,6 +25,6 @@ yarn-error.log*
 # 사용자 정의
 node_modules
 
-dev.js
+# dev.js
 
-Config.js
+# Config.js
