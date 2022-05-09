@@ -146,7 +146,7 @@ function SignIn() {
                                             Log in
                                         </Button>
                                     </div>
-                                    Or <a href="/sign-in">register now!</a>
+                                    Or <a href="/sign-up">register now!</a>
                                 </Form.Item>
                             </form>
                         </div>
