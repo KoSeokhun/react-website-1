@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import KaKaoLogin from 'react-kakao-login';
 import { KAKAO_JAVASCRIPT_KEY } from '../../../Config';
+
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../../../_actions/user_action";
 
 const buttonBlock = {
     border: 'none',
@@ -23,7 +27,40 @@ const ButtoninnerText = styled.h3`
   font-size: 14px;
 `;
 
-const Kakao = ({ oAuthLoginHandler }) => {
+const Kakao = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [formErrorMessage, setFormErrorMessage] = useState('')
+
+    const oAuthLoginHandler = (values) => {
+        //   console.log("values : " + JSON.stringify(values));
+        let dataToSubmit = {
+            oAuthId: values.profile,
+            name: values.profile.properties.nickname,
+            lastName: values.profile.properties.nickname,
+            email: values.profile.kakao_account.email,
+            image: values.profile.properties.profile_image,
+        };
+        //   console.log("dataToSubmit : " + JSON.stringify(dataToSubmit));
+
+        dispatch(loginUser(dataToSubmit))
+            .then(response => {
+                if (response.payload.loginSuccess) {
+                    window.localStorage.setItem('userId', response.payload.userId);
+                    navigate('/');
+                } else {
+                    setFormErrorMessage('Check out your Account or Password again')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                setFormErrorMessage('Check out your Account or Password again')
+                setTimeout(() => {
+                    setFormErrorMessage("")
+                }, 3000);
+            });
+    }
+
     return (
         <>
             <KaKaoLogin
@@ -36,6 +73,9 @@ const Kakao = ({ oAuthLoginHandler }) => {
             >
                 <ButtoninnerText>카카오 계정으로 로그인</ButtoninnerText>
             </KaKaoLogin>
+            {formErrorMessage && (
+                <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
+            )}
         </>
     );
 };
