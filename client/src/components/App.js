@@ -13,7 +13,7 @@ import Store from './pages/Store/Store';
 import Wtg from './pages/Wtg/Wtg';
 import SignIn from './pages/SignIn/General/SignIn';
 import Profile from './pages/Profile/Profile';
-import Naver from './pages/SignIn/Naver/Naver';
+import Callback from './pages/SignIn/Naver/Callback';
 
 function App() {
   // BottomNavbar on, off
@@ -52,7 +52,7 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
-          <Route path='/auth/naver/callback' element={<Naver />} />
+          <Route path='/auth/naver/callback' element={<Callback />} />
         </Routes>
         {bottomNavbar && <BottomNavbar />}
       </Router>
