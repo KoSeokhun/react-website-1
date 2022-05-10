@@ -96,7 +96,7 @@ function SignUp() {
                         values,
                         touched,
                         errors,
-                        dirty,
+                        // dirty,
                         isSubmitting,
                         handleChange,
                         handleBlur,

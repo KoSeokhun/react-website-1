@@ -79,12 +79,12 @@ function SignIn() {
                         values,
                         touched,
                         errors,
-                        dirty,
+                        // dirty,
                         isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
-                        handleReset,
+                        // handleReset,
                     } = props;
                     return (
                         <div className="app" style={{ paddingTop: '5rem', width: '350px', margin: '0 auto' }} >
