@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-function Naver() {
-    return (
-        <div>Naver</div>
-    )
-}
-
-export default Naver
-=======
 import React, { useEffect } from 'react';
 import { NAVER_JAVASCRIPT_KEY } from "../../../Config";
 import { NAVER_CALLBACK_URL } from "../../../Config";
@@ -35,4 +24,3 @@ const Naver = (props) => {
 }
 
 export default Naver;
->>>>>>> hun
