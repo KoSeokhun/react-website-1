@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -41,9 +41,10 @@ const Callback = () => {
     }
 
     useEffect(() => {
+        console.log('하하');
         getNaverToken();
         getUserInfo();
-    }, []);
+    });
 }
 
 export default Callback;
