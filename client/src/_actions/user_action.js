@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, NAVER_LOGIN_USER, REGISTER_USER, AUTH_USER } from "./types";
+import { LOGIN_USER, NAVER_LOGIN_USER, REGISTER_USER, AUTH_USER, FIND_USER } from "./types";
 
 export function loginUser(dataToSubmit) {
     const request = axios.post('/api/users/login', dataToSubmit)
@@ -27,6 +27,16 @@ export function registerUser(dataToSubmit) {
 
     return {
         type: REGISTER_USER,
+        payload: request
+    }
+}
+
+export function findUser(dataToSubmit) {
+    const request = axios.post('/api/users/findUser', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: FIND_USER,
         payload: request
     }
 }

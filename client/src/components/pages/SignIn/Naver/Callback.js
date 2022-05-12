@@ -41,7 +41,6 @@ const Callback = () => {
     }
 
     useEffect(() => {
-        console.log('하하');
         getNaverToken();
         getUserInfo();
     });

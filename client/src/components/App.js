@@ -14,6 +14,7 @@ import Wtg from './pages/Wtg/Wtg';
 import SignIn from './pages/SignIn/General/SignIn';
 import Profile from './pages/Profile/Profile';
 import Callback from './pages/SignIn/Naver/Callback';
+import Undefined from './pages/Undefined/Undefined';
 
 function App() {
   // BottomNavbar on, off
@@ -53,6 +54,9 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/auth/naver/callback' element={<Callback />} />
+
+
+          <Route path='/undefined' element={<Undefined />} />
         </Routes>
         {bottomNavbar && <BottomNavbar />}
       </Router>

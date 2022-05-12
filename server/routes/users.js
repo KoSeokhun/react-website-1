@@ -108,7 +108,6 @@ router.post('/naverLogin', (req, res) => {
             // 계정 생성
             userSchema.save((err, userInfo) => {
                 userInfo.generateToken((err, user) => {
-                    console.log('유저 없음:' + user);
                     if (err) return res.status(400).send(err);
                     // save Token at Cookie
                     res.cookie("x_auth", user.token) //쿠키에 JWT토큰을 넣어준다.
@@ -173,6 +172,25 @@ router.post('/naverLogin', (req, res) => {
     getUserInfo();
 });
 
+router.post('/findUser', (req, res) => {
+    const query = {
+        // [`${req.body.dataType}: ${req.body.value}`]: { $exists: true }
+        [`${req.body.dataType}`]: `${req.body.value}`
+    };
+
+    User.findOne(query, (err, user) => {
+        if (!user) {
+            return res.status(200).json({
+                findSuccess: false,
+            });
+        } else {
+            return res.status(200).json({
+                findSuccess: true,
+            });
+        }
+    });
+});
+
 router.get('/auth', auth, (req, res) => {
     res.status(200).json({
         _id: req.user._id,
@@ -188,20 +206,18 @@ router.get('/auth', auth, (req, res) => {
 
 router.get('/logout', auth, (req, res) => {
 
-    User.findOneAndUpdate({
-        _id: req.user._id
-    }, {
-        token: "",
-        tokenExp: ""
-    }, (err, user) => {
-        if (err) return res.json({
-            success: false,
-            err
+    User.findOneAndUpdate(
+        { _id: req.user._id },
+        { token: "", tokenExp: "" },
+        (err, user) => {
+            if (err) return res.json({
+                success: false,
+                err
+            });
+            return res.status(200).send({
+                success: true
+            });
         });
-        return res.status(200).send({
-            success: true
-        });
-    });
 });
 
 module.exports = router;

@@ -11,7 +11,8 @@
 /* 추가 */
 .community,
 .store,
-.wtg {
+.wtg,
+.undefined {
     display: flex;
     height: 90vh;
     align-items: center;
@@ -61,6 +62,16 @@
 .wtg {
     /* 추가 */
     background-image: url('/public/images/img-7.jpg');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 100px;
+}
+
+.undefined {
+    /* 추가 */
+    background-image: url('/public/images/img-home.jpg');
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;

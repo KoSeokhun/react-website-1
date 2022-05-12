@@ -3,6 +3,7 @@ import moment from "moment";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../../_actions/user_action";
+import { findUser } from "../../../_actions/user_action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../../hoc/auth";
@@ -39,9 +40,32 @@ const tailFormItemLayout = {
     },
 };
 
+function isInUse(message, dataType, dispatch) {
+
+    return this.test("isInUse", message, function (value) {
+        const { path, createError } = this;
+        let dataToSubmit = {
+            dataType,
+            value
+        };
+
+        return dispatch(findUser(dataToSubmit))
+            .then(response => {
+                if (response.payload.findSuccess) {
+                    return createError({ path, message: message });
+                }
+                else {
+                    return true;
+                }
+            });
+    });
+
+}
+
 function SignUp() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    Yup.addMethod(Yup.string, "isInUse", isInUse);
 
     return (
         <>
@@ -55,12 +79,16 @@ function SignUp() {
                 }}
                 validationSchema={Yup.object().shape({
                     name: Yup.string()
+                        .max(16, 'Name is too long.')
                         .required('Name is required'),
                     Nickname: Yup.string()
-                        .required('Nickname is required'),
+                        .required('Nickname is required')
+                        .max(8, 'Nickname is too long.')
+                        .isInUse('Nickname is already in use.', 'Nickname', dispatch),
                     email: Yup.string()
                         .email('Email is invalid')
-                        .required('Email is required'),
+                        .required('Email is required')
+                        .isInUse('Email is already in use.', 'email', dispatch),
                     password: Yup.string()
                         .min(6, 'Password must be at least 6 characters')
                         .required('Password is required'),
@@ -77,6 +105,8 @@ function SignUp() {
                             name: values.name,
                             Nickname: values.Nickname,
                             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
+                            // moment().unix() : Unix Timestamp in seconds.
+                            // `http://gravatar.com/avatar/${moment().unix()}?d=identicon` : Generate a random gravatar icon.
                         };
 
                         dispatch(registerUser(dataToSubmit)).then(response => {
@@ -90,19 +120,21 @@ function SignUp() {
                         setSubmitting(false);
                     }, 500);
                 }}
+
             >
                 {props => {
                     const {
                         values,
                         touched,
                         errors,
-                        // dirty,
+                        //dirty,
                         isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
                         handleReset,
                     } = props;
+
                     return (
                         <div className="app" style={{ paddingTop: '5rem', width: '350px', margin: '0 auto' }}>
                             <Title level={2} style={{ textAlign: 'center' }}>Sign up</Title>
@@ -113,7 +145,7 @@ function SignUp() {
                                         id="name"
                                         placeholder="Enter your name"
                                         type="text"
-                                        value={values.name}
+                                        value={values.name} // true or false
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         className={
