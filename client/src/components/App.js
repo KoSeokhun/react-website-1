@@ -15,6 +15,7 @@ import SignIn from './pages/SignIn/General/SignIn';
 import Profile from './pages/Profile/Profile';
 import Callback from './pages/SignIn/Naver/Callback';
 import Undefined from './pages/Undefined/Undefined';
+import ResetUser from './pages/ResetUser/ResetUser';
 
 function App() {
   // BottomNavbar on, off
@@ -51,11 +52,14 @@ function App() {
           {/* 추가 */}
           <Route path='/services' element={<Services />} />
           <Route path='/products' element={<Products />} />
+
+          {/* Register/Login */}
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/auth/naver/callback' element={<Callback />} />
+          <Route path='/reset-user' element={<ResetUser />} />
 
-
+          {/* Loading */}
           <Route path='/undefined' element={<Undefined />} />
         </Routes>
         {bottomNavbar && <BottomNavbar />}
