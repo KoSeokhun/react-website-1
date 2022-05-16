@@ -7,13 +7,6 @@ mongoose.connect(config.mongoURI).then(() => console.log('MongoDB Connected...')
   .catch(err => console.log(err))
 
 const bodyParser = require('body-parser');
-const {
-  User
-} = require('./models/User');
-const {
-  auth
-} = require('./middleware/auth');
-
 const cookieParser = require('cookie-parser');
 
 //application/x-www-form-urlencorded
@@ -27,6 +20,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
+app.use('/api/data', require('./routes/data'));
 //app.use('/api/favorite', require('./routes/favorite'));
 
 //use this to show the image you have in node js server to client (react js)

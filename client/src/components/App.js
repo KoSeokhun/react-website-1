@@ -15,7 +15,8 @@ import SignIn from './pages/SignIn/General/SignIn';
 import Profile from './pages/Profile/Profile';
 import Callback from './pages/SignIn/Naver/Callback';
 import Undefined from './pages/Undefined/Undefined';
-import ResetUser from './pages/ResetUser/ResetUser';
+import Recruitment from './pages/Recruitment/Recruitment';
+import Information from './pages/Recruitment/Information/Information';
 
 function App() {
   // BottomNavbar on, off
@@ -43,23 +44,25 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          {/* Features page */}
           <Route exact path='/' element={<Home />} />
-          {/* 추가 */}
           <Route path='/community' element={<Community />} />
           <Route path='/store' element={<Store />} />
           <Route path='/wtg' element={<Wtg />} />
           <Route path='/profile' element={<Profile />} />
+
           {/* 추가 */}
           <Route path='/services' element={<Services />} />
           <Route path='/products' element={<Products />} />
+          <Route exact path='/recruitment' element={<Recruitment />} />
+          <Route exact path='/recruitment/information' element={<Information />} />
 
-          {/* Register/Login */}
+          {/* Register/Login page */}
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/auth/naver/callback' element={<Callback />} />
-          <Route path='/reset-user' element={<ResetUser />} />
 
-          {/* Loading */}
+          {/* Loading page */}
           <Route path='/undefined' element={<Undefined />} />
         </Routes>
         {bottomNavbar && <BottomNavbar />}

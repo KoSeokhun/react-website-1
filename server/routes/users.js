@@ -178,17 +178,32 @@ router.post('/findUser', (req, res) => {
         [`${req.body.dataType}`]: `${req.body.value}`
     };
 
-    User.findOne(query, (err, user) => {
-        if (!user) {
-            return res.status(200).json({
-                findSuccess: false,
-            });
-        } else {
-            return res.status(200).json({
-                findSuccess: true,
-            });
-        }
-    });
+    if (req.body.dataType == 'name') {
+        User.find(query, (err, user) => {
+            if (user.length == 0) {
+                return res.status(200).json({
+                    findSuccess: false,
+                });
+            } else {
+                return res.status(200).json({
+                    findSuccess: true,
+                    user: user
+                });
+            }
+        });
+    } else {
+        User.findOne(query, (err, user) => {
+            if (!user) {
+                return res.status(200).json({
+                    findSuccess: false,
+                });
+            } else {
+                return res.status(200).json({
+                    findSuccess: true,
+                });
+            }
+        });
+    }
 });
 
 router.get('/auth', auth, (req, res) => {
