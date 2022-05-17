@@ -11,7 +11,8 @@
 /* 추가 */
 .community,
 .store,
-.wtg {
+.wtg,
+.undefined {
     display: flex;
     height: 90vh;
     align-items: center;

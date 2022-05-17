@@ -8,7 +8,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../../../hoc/auth";
 import Kakao from "../Kakao/Kakao";
-import Naver from 'react-naver-login';
+import Naver from "../Naver/Naver";
+import Modal from "../../commons/Modal/Modal";
+import ResetUser from "../../ResetUser/ResetUser";
 
 const { Title } = Typography;
 
@@ -16,6 +18,7 @@ function SignIn() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // RememberMe
     const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
 
     const [formErrorMessage, setFormErrorMessage] = useState('')
@@ -26,6 +29,16 @@ function SignIn() {
     };
 
     const initialEmail = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
+
+    // Forgot email, password modal
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     return (
         <>
@@ -79,18 +92,19 @@ function SignIn() {
                         values,
                         touched,
                         errors,
-                        dirty,
+                        // dirty,
                         isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
-                        handleReset,
+                        // handleReset,
                     } = props;
                     return (
                         <div className="app" style={{ paddingTop: '5rem', width: '350px', margin: '0 auto' }} >
 
                             <Title level={2} style={{ textAlign: 'center' }}>Log In</Title>
-                            <form onSubmit={handleSubmit} style={{ width: '350px' }}>
+                            {/* <form onSubmit={handleSubmit} style={{ width: '350px' }}> */}
+                            <form className="login-form" onSubmit={handleSubmit} >
 
                                 <Form.Item required>
                                     <Input
@@ -138,29 +152,46 @@ function SignIn() {
 
                                 <Form.Item>
                                     <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
-                                    <a className="login-form-forgot" href="/reset_user" style={{ float: 'right' }}>
-                                        forgot password
-                                    </a>
+
+                                    <Button onClick={openModal} style={{ float: 'right' }}>forgot email / password</Button>
+
                                     <div>
                                         <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
                                             Log in
                                         </Button>
                                     </div>
-                                    Or <a href="/sign-up">register now!</a>
                                 </Form.Item>
                             </form>
+                            Or <a href="/sign-up">register now!</a>
+                            <Modal open={modalOpen} close={closeModal} header="Find your email / password">
+                                <ResetUser />
+                            </Modal>
                         </div>
                     );
                 }}
             </Formik>
             <Kakao />
-            {/* <Naver
-                clientId="DNvyuXQ14_LqW1t7FBfQ"
-                callbackUrl="http://127.0.0.1:3001/auth/naver/callback"
-                render={(props) => <div onClick={props.onClick}>Naver Login</div>}
-                onSuccess={(naverUser) => console.log(naverUser)}
-                onFailure={(result) => console.error(result)}
-            /> */}
+            <Naver />
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
         </>
     );
 };

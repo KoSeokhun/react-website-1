@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-
-
-
 import Navbar from './pages/Navbar/Navbar';
 import BottomNavbar from './pages/BottomNavbar/BottomNavbar';
 import Home from './pages/Home/Home';
@@ -16,7 +13,10 @@ import Store from './pages/Store/Store';
 import Wtg from './pages/Wtg/Wtg';
 import SignIn from './pages/SignIn/General/SignIn';
 import Profile from './pages/Profile/Profile';
-import Naver from './pages/SignIn/Naver/Naver';
+import Callback from './pages/SignIn/Naver/Callback';
+import Undefined from './pages/Undefined/Undefined';
+import Recruitment from './pages/Recruitment/Recruitment';
+import Information from './pages/Recruitment/Information/Information';
 
 function App() {
   // BottomNavbar on, off
@@ -44,18 +44,26 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          {/* Features page */}
           <Route exact path='/' element={<Home />} />
-          {/* 추가 */}
           <Route path='/community' element={<Community />} />
           <Route path='/store' element={<Store />} />
           <Route path='/wtg' element={<Wtg />} />
           <Route path='/profile' element={<Profile />} />
+
           {/* 추가 */}
           <Route path='/services' element={<Services />} />
           <Route path='/products' element={<Products />} />
+          <Route exact path='/recruitment' element={<Recruitment />} />
+          <Route exact path='/recruitment/information' element={<Information />} />
+
+          {/* Register/Login page */}
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
-          <Route path='/auth/naver/callback' element={<Naver />} />
+          <Route path='/auth/naver/callback' element={<Callback />} />
+
+          {/* Loading page */}
+          <Route path='/undefined' element={<Undefined />} />
         </Routes>
         {bottomNavbar && <BottomNavbar />}
       </Router>

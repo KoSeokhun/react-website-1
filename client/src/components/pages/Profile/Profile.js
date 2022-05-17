@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Auth from '../../../hoc/auth';
 
 function Profile() {
     return (
-        <h1>Profile</h1>
+        <>
+            <h1>Profile</h1>
+        </>
     )
 }
 
-export default Profile
+export default Auth(Profile, true); 

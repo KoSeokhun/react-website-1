@@ -1,3 +1,4 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client'; //추가
 import App from './components/App';
@@ -11,12 +12,10 @@ const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)
 const container = document.getElementById('root');
 
 ReactDOM.createRoot(container).render(
-    <React.StrictMode>
-        <Provider store={createStoreWithMiddleware(Reducer,
-            window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            window.__REDUX_DEVTOOLS_EXTENSION__()
-        )}>
-            <App />
-        </Provider>
-    </React.StrictMode>
+    <Provider store={createStoreWithMiddleware(Reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )}>
+        <App />
+    </Provider>
 );

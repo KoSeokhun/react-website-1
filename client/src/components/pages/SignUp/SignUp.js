@@ -3,6 +3,7 @@ import moment from "moment";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../../_actions/user_action";
+import { findUser } from "../../../_actions/user_action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../../hoc/auth";
@@ -39,28 +40,55 @@ const tailFormItemLayout = {
     },
 };
 
+function isInUse(message, dataType, dispatch) {
+
+    return this.test("isInUse", message, function (value) {
+        const { path, createError } = this;
+        let dataToSubmit = {
+            dataType,
+            value
+        };
+
+        return dispatch(findUser(dataToSubmit))
+            .then(response => {
+                if (response.payload.findSuccess) {
+                    return createError({ path, message: message });
+                }
+                else {
+                    return true;
+                }
+            });
+    });
+
+}
+
 function SignUp() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    Yup.addMethod(Yup.string, "isInUse", isInUse);
 
     return (
         <>
             <Formik
                 initialValues={{
                     email: '',
-                    lastName: '',
+                    Nickname: '',
                     name: '',
                     password: '',
                     confirmPassword: ''
                 }}
                 validationSchema={Yup.object().shape({
                     name: Yup.string()
+                        .max(16, 'Name is too long.')
                         .required('Name is required'),
-                    lastName: Yup.string()
-                        .required('Last Name is required'),
+                    Nickname: Yup.string()
+                        .required('Nickname is required')
+                        .max(8, 'Nickname is too long.')
+                        .isInUse('Nickname is already in use.', 'Nickname', dispatch),
                     email: Yup.string()
                         .email('Email is invalid')
-                        .required('Email is required'),
+                        .required('Email is required')
+                        .isInUse('Email is already in use.', 'email', dispatch),
                     password: Yup.string()
                         .min(6, 'Password must be at least 6 characters')
                         .required('Password is required'),
@@ -75,8 +103,10 @@ function SignUp() {
                             email: values.email,
                             password: values.password,
                             name: values.name,
-                            lastName: values.lastName,
+                            Nickname: values.Nickname,
                             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
+                            // moment().unix() : Unix Timestamp in seconds.
+                            // `http://gravatar.com/avatar/${moment().unix()}?d=identicon` : Generate a random gravatar icon.
                         };
 
                         dispatch(registerUser(dataToSubmit)).then(response => {
@@ -96,7 +126,7 @@ function SignUp() {
                         values,
                         touched,
                         errors,
-                        dirty,
+                        //dirty,
                         isSubmitting,
                         handleChange,
                         handleBlur,
@@ -113,7 +143,7 @@ function SignUp() {
                                         id="name"
                                         placeholder="Enter your name"
                                         type="text"
-                                        value={values.name}
+                                        value={values.name} // true or false
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         className={
@@ -125,20 +155,20 @@ function SignUp() {
                                     )}
                                 </Form.Item>
 
-                                <Form.Item required label="Last Name">
+                                <Form.Item required label="Nickname">
                                     <Input
-                                        id="lastName"
-                                        placeholder="Enter your Last Name"
+                                        id="Nickname"
+                                        placeholder="Enter your Nickname"
                                         type="text"
-                                        value={values.lastName}
+                                        value={values.Nickname}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         className={
-                                            errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
+                                            errors.Nickname && touched.Nickname ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.lastName && touched.lastName && (
-                                        <div className="input-feedback">{errors.lastName}</div>
+                                    {errors.Nickname && touched.Nickname && (
+                                        <div className="input-feedback">{errors.Nickname}</div>
                                     )}
                                 </Form.Item>
 

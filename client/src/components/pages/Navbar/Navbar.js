@@ -97,18 +97,24 @@ function Navbar() {
                 </li>
                 <li className='nav-item'>
                   <Link to='/sign-in' className='nav-links-mobile' onClick={closeMobileMenu}>
-                    Log In
+                    Sign In
                   </Link>
                 </li></>
               : <>
-                <Link to='' className='nav-links-mobile' onClick={() => { closeMobileMenu(); logoutHandler(); }}>Logout</Link>
+                <li className='nav-item'>
+                  <Link to='/profile' className='nav-links-mobile' onClick={closeMobileMenu}>Profile</Link>
+                </li>
+                <li className='nav-item'>
+                  <Link to='' className='nav-links-mobile' onClick={() => { closeMobileMenu(); logoutHandler(); }}>Logout</Link>
+                </li>
               </>}
           </ul>
           {(user.userData && !user.userData.isAuth)
             ? <>
-              {button && <Button buttonStyle='btn--outline' color='warning' path='sign-up'>SIGN UP</Button>}
-              {button && <Button buttonStyle='btn--outline' color='warning' path='sign-in'>LOG IN</Button>}</>
+              {button && <Button buttonStyle='btn--outline' path='sign-up'>SIGN UP</Button>}
+              {button && <Button buttonStyle='btn--outline' path='sign-in'>SIGN IN</Button>}</>
             : <>
+              {button && <Button buttonStyle='btn--outline' path='profile'>PROFILE</Button>}
               {button && <Button buttonStyle='btn--outline' onClick={logoutHandler}>LOG OUT</Button>}</>}
         </div>
       </nav>
