@@ -3,6 +3,6 @@ import '../../App.css';
 
 export default function Wtg() {
     return <h1 className='wtg'>
-        WTG
+        WTG ㅎㅎ
     </h1>;
 }
