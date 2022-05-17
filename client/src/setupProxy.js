@@ -8,11 +8,11 @@ module.exports = function (app) {
             changeOrigin: true,
         })
     );
-    app.use(
-        '/scraping',
-        createProxyMiddleware({
-            target: 'https://www.yna.co.kr',
-            changeOrigin: true,
-        })
-    );
+    // app.use(
+    //     '/scraping',
+    //     createProxyMiddleware({
+    //         target: 'https://www.yna.co.kr',
+    //         changeOrigin: true,
+    //     })
+    // );
 };
