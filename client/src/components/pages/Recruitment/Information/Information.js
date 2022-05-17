@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { fetchData } from "../../../../_actions/data_action";
-import Scraping from '../../commons/Scraping/Scraping';
 
 function Information() {
     const dispatch = useDispatch();
@@ -21,49 +20,56 @@ function Information() {
     // 잡코리아 : https://www.jobkorea.co.kr/Search/ 
     //?stext=소프트웨어%20개발자&local=I000&payType=1&payMin=3000
 
-    const [Career, setCareer] = useState(decodeURI(location.search))
-    const [Location, setLocation] = useState(null);
-    const [Salary, setSalary] = useState(null);
-
-    const scrapJobkorea = () => {
-        try {
-            const dataToSubmit = {
-                stext: Career,
-                local: Location,
-                payMin: Salary,
-            }
-
-            return Scraping(dataToSubmit);
-        }
-        catch (err) {
-            console.error(err);
-        }
-    };
+    const [Career, setCareer] = useState(location.search);
+    const [Location, setLocation] = useState('');
+    const [Salary, setSalary] = useState('');
 
     const [SaraminData, setSaraminData] = useState([]);
     const [JobkoreaData, setJobkoreaData] = useState([]);
-    const dataToSubmit = {
-        stext: Career,
-        local: Location,
-        payMin: Salary,
-    }
+
     useEffect(() => {
+        const dataToSubmit = {
+            site: 'saramin',
+            searchword: Career,
+            loc_mcd: Location,
+            sal_min: Salary,
+        }
         function fetchSaraminData(dataToSubmit) {
             dispatch(fetchData(dataToSubmit))
-                .then(res => { console.log(res); return JSON.stringify(res.payload.data) })
+                .then(res => { console.log(res); return res.payload.data })
                 .then(data => {
-                    console.log(data);
-                    setSaraminData(data);
+                    console.log(data[0]);
+                    setSaraminData(data[0].title);
                 })
 
         }
-        // setData(dataToSubmit)
+        fetchSaraminData(dataToSubmit);
+    }, [Career, Location, Salary]);
+
+    useEffect(() => {
+        const dataToSubmit = {
+            site: 'jobkorea',
+            stext: Career,
+            local: Location,
+            payMin: Salary,
+        }
+        function fetchJobkoreaData(dataToSubmit) {
+            dispatch(fetchData(dataToSubmit))
+                .then(res => { console.log(res); return res.payload.data })
+                .then(data => {
+                    console.log(data[0]);
+                    setJobkoreaData(data[0].title);
+                })
+
+        }
+        fetchJobkoreaData(dataToSubmit);
     }, [Career, Location, Salary]);
 
     return (
         <>
             <div>Information</div>
             {SaraminData && (<div>{SaraminData}</div>)}
+            {JobkoreaData && (<div>{JobkoreaData}</div>)}
         </>
     )
 }
