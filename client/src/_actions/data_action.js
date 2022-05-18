@@ -2,7 +2,7 @@ import axios from "axios";
 import { FETCH_DATA } from "./types";
 
 export function fetchData(dataToSubmit) {
-    console.log(dataToSubmit.site);
+    // console.log(dataToSubmit.site);
     if (dataToSubmit.site === 'saramin') {
         const request = axios.post('/api/data/saramin', dataToSubmit)
             .then(response => response.data)
