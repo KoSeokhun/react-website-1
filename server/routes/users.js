@@ -209,7 +209,8 @@ router.post('/findUser', (req, res) => {
 router.get('/auth', auth, (req, res) => {
     res.status(200).json({
         _id: req.user._id,
-        idAdmin: req.user.role === 0 ? false : true,
+        oAuthId: req.user.oAuthId,
+        isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
         email: req.user.email,
         name: req.user.name,
