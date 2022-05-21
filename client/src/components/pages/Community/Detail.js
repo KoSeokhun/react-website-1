@@ -67,15 +67,16 @@ function Detail() {
     <PostDiv>
       {/* {Flag ? ( */}
       <Post>
-        {<h1>{PostInfo.title}</h1>}
-        <img
-          //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
-          src={PostInfo.image}
-          alt=""
-          style={{ width: "80%", height: "auto" }}
-        />
-        {/* <h3>{PostInfo.author.displayName}</h3> */}
-        {/* {PostInfo.image ? (
+        <h1>{PostInfo.title}</h1>
+        <div className="author">
+          {/* <h3>{PostInfo.author.displayName}</h3> */}
+          <img
+            //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
+            src={PostInfo.image}
+            alt=""
+            style={{ width: "80%", height: "auto" }}
+          />
+          {/* {PostInfo.image ? (
               <img
                 //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
                 src={PostInfo.image}
@@ -83,13 +84,12 @@ function Detail() {
                 style={{ width: "80%", height: "auto" }}
               />
             ) : null} */}
-        <p>{PostInfo.content}</p>
-        <div className="author">
           <p className="time">
             {SetTime(PostInfo.createdAt, PostInfo.updatedAt)}
+            {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}
           </p>
         </div>
-        {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}
+        <p>{PostInfo.content}</p>
       </Post>
       <BtnDiv>
         <Link to={`/edit/${PostInfo.postNum}`}>
