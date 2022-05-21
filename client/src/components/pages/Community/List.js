@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ListDiv, ListItem, UploadButtonDiv } from "../../Style/ListCSS";
 
 function List(props) {
   const [PostList, setPostList] = useState([]);
-  const navigate = useNavigate;
-
   useEffect(() => {
     //return 구문이 아닌 그냥 코드를 쓸 경우 컴포넌트 생성 시에 훅을 걸어 줄 수 있으니 여기서 axios 통신
     axios
@@ -21,18 +19,15 @@ function List(props) {
         console.log(err);
       });
   }, []);
+
   return (
     <>
-      <UploadButtonDiv>
-        <button
-          onClick={() => {
-            navigate("/upload");
-          }}
-        >
-          글쓰기
-        </button>
-      </UploadButtonDiv>
       <ListDiv>
+        <UploadButtonDiv>
+          <Link to="/upload">
+            <button>글작성</button>
+          </Link>
+        </UploadButtonDiv>
         {PostList.map((post, index) => {
           console.log("게시글", post);
           return (
