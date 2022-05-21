@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
+import moment from "moment";
+import "moment/locale/ko";
 import { PostDiv, BtnDiv, SpinnerDiv, Post } from "../../Style/PostDetailCSS";
 
 function Detail() {
@@ -12,6 +14,15 @@ function Detail() {
   const [PostInfo, setPostInfo] = useState({}); // Object type
   const [Flag, setFlag] = useState(false);
   // const user = useSelector((state) => state.user);
+
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format("YYYY년 MMMM Do, hh:mm") + " (수정됨)";
+    } else {
+      return moment(a).format("YYYY년 MMMM Do, hh:mm");
+    }
+  };
+
   useEffect(() => {
     let body = {
       postNum: params.postNum,
@@ -73,6 +84,8 @@ function Detail() {
               />
             ) : null} */}
         <p>{PostInfo.content}</p>
+        <p>{SetTime(PostInfo.createdAt, PostInfo.updatedAt)}</p>
+        {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}
       </Post>
       <BtnDiv>
         <Link to={`/edit/${PostInfo.postNum}`}>

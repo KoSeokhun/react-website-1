@@ -20,6 +20,7 @@ import Information from "./pages/Recruitment/Information/Information";
 import Upload from "./pages/Community/Upload";
 import Detail from "./pages/Community/Detail";
 import Edit from "./pages/Community/Edit";
+import ComMain from "./pages/Community/ComMain";
 
 function App() {
   // BottomNavbar on, off
@@ -50,7 +51,7 @@ function App() {
           {/* Features page */}
           <Route exact path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/community" element={<Community />} />
+          <Route path="/community" element={<ComMain />} />
           <Route path="/wtg" element={<Wtg />} />
           <Route path="/profile" element={<Profile />} />
 

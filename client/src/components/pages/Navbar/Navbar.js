@@ -60,7 +60,11 @@ function Navbar() {
             </li>
             {/* 추가 */}
             <li className="nav-item">
-              <Link to="/list" className="nav-links" onClick={closeMobileMenu}>
+              <Link
+                to="/community"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 Community
               </Link>
             </li>

@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ListDiv, ListItem, UploadButtonDiv } from "../../Style/ListCSS";
+import moment from "moment";
+import "moment/locale/ko";
 
 function List(props) {
-  const [PostList, setPostList] = useState([]);
-  useEffect(() => {
-    //return 구문이 아닌 그냥 코드를 쓸 경우 컴포넌트 생성 시에 훅을 걸어 줄 수 있으니 여기서 axios 통신
-    axios
-      .post("api/post/list")
-      .then((response) => {
-        if (response.data.success) {
-          console.log(response.data);
-          setPostList([...response.data.postList]);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format("YYYY년 MMMM Do, hh:mm") + " (수정됨)";
+    } else {
+      return moment(a).format("YYYY년 MMMM Do, hh:mm");
+    }
+  };
   return (
     <>
       <ListDiv>
@@ -28,7 +20,7 @@ function List(props) {
             <button>글작성</button>
           </Link>
         </UploadButtonDiv>
-        {PostList.map((post, index) => {
+        {props.PostList.map((post, index) => {
           console.log("게시글", post);
           return (
             <ListItem key={index}>
@@ -36,6 +28,7 @@ function List(props) {
                 <p className="title">{post.title}</p>
                 {/* <p className="author">{post.author.displayName}</p> */}
                 <p>{post.content}</p>
+                <p>{SetTime(post.createdAt, post.updatedAt)}</p>
               </Link>
             </ListItem>
           );
