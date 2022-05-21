@@ -57,7 +57,7 @@ router.post("/detail", (req, res) => {
     .exec()
     .then((doc) => {
       console.log("글 세부 데이터", doc);
-      res.status(200).json({ success: true, postList: doc });
+      res.status(200).json({ success: true, post: doc });
     })
     .catch((err) => {
       console.log("에러에러");

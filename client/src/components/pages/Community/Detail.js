@@ -16,12 +16,13 @@ function Detail() {
     let body = {
       postNum: params.postNum,
     };
-    console.log("글번호", body);
     axios
       .post("/api/post/detail", body)
       .then((response) => {
         if (response.data.success) {
-          setPostInfo(response.data.post);
+          console.log(response.data);
+          setPostInfo(response.data.postList);
+          console.log(PostInfo);
           setFlag(true);
         }
       })
@@ -51,14 +52,12 @@ function Detail() {
   };
 
   return (
-    <>
-      <h1>디테일컴포넌트</h1>
-      <PostDiv>
-        {/* {Flag ? ( */}
-        <Post>
-          <h1>{PostInfo.title}</h1>
-          {/* <h3>{PostInfo.author.displayName}</h3> */}
-          {/* {PostInfo.image ? (
+    <PostDiv>
+      {/* {Flag ? ( */}
+      <Post>
+        {<h1>{PostInfo.title}</h1>}
+        {/* <h3>{PostInfo.author.displayName}</h3> */}
+        {/* {PostInfo.image ? (
               <img
                 //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
                 src={PostInfo.image}
@@ -66,17 +65,17 @@ function Detail() {
                 style={{ width: "80%", height: "auto" }}
               />
             ) : null} */}
-          <p>{PostInfo.content}</p>
-        </Post>
-        <BtnDiv>
-          <Link to={`/edit/${PostInfo.postNum}`}>
-            <button className="edit">수정</button>
-          </Link>
-          <button className="delete" onClick={() => DeleteHandler()}>
-            삭제
-          </button>
-        </BtnDiv>
-        {/* {user.uid === PostInfo.author.uid && (
+        <p>{PostInfo.content}</p>
+      </Post>
+      <BtnDiv>
+        <Link to={`/edit/{PostInfo.postNum}`}>
+          <button className="edit">수정</button>
+        </Link>
+        <button className="delete" onClick={() => DeleteHandler()}>
+          삭제
+        </button>
+      </BtnDiv>
+      {/* {user.uid === PostInfo.author.uid && (
             <BtnDiv>
               <Link to={`/edit/${PostInfo.postNum}`}>
                 <button className="edit">수정</button>
@@ -94,8 +93,7 @@ function Detail() {
           </Spinner>
         </SpinnerDiv>
       )} */}{" "}
-      </PostDiv>
-    </>
+    </PostDiv>
   );
 }
 
