@@ -10,7 +10,7 @@ function ComMain() {
       .post("api/post/list")
       .then((response) => {
         if (response.data.success) {
-          console.log(response.data);
+          console.log("처음", response.data);
           setPostList([...response.data.postList]);
         }
       })
@@ -22,7 +22,7 @@ function ComMain() {
     <div>
       <div>
         <input type="text"></input>
-        <button></button>
+        <button>응안돼</button>
       </div>
       <List PostList={PostList} />
     </div>

@@ -84,7 +84,11 @@ function Detail() {
               />
             ) : null} */}
         <p>{PostInfo.content}</p>
-        <p>{SetTime(PostInfo.createdAt, PostInfo.updatedAt)}</p>
+        <div className="author">
+          <p className="time">
+            {SetTime(PostInfo.createdAt, PostInfo.updatedAt)}
+          </p>
+        </div>
         {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}
       </Post>
       <BtnDiv>
