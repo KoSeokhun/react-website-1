@@ -64,4 +64,37 @@ router.post("/detail", (req, res) => {
       res.status(400).json({ success: false });
     });
 });
+
+//글 수정
+router.post("/edit", (req, res) => {
+  console.log("글수정로그");
+  let temp = {
+    title: req.body.title,
+    content: req.body.content,
+    //image: req.body.image,
+  };
+  Post.updateOne({ postNum: Number(req.body.postNum) }, { $set: temp })
+    .exec()
+    .then((doc) => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      console.log("글 수정 오류", err);
+      res.status(400).json({ success: false });
+    });
+});
+
+// //글 삭제
+// router.post("/delete", (req, res) => {
+//   Post.deleteOne({ postNum: Number(req.body.postNum) })
+//     .exec()
+//     .then(() => {
+//       res.status(200).json({ success: true });
+//     })
+//     .catch((err) => {
+//       console.log("글 삭제 오류", err);
+//       res.status(400).json({ success: false });
+//     });
+// });
+
 module.exports = router; //이거 안해주면 403에러남

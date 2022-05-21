@@ -69,7 +69,7 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/list" element={<Community />} />
           <Route path="/post/:postNum" element={<Detail />}></Route>
-          {/* <Route path="/edit/:postNum" element={<Edit />}></Route> */}
+          <Route path="/edit/:postNum" element={<Edit />}></Route>
 
           {/* Register/Login page */}
           <Route path="/sign-up" element={<SignUp />} />

@@ -20,8 +20,8 @@ function Detail() {
       .post("/api/post/detail", body)
       .then((response) => {
         if (response.data.success) {
-          console.log(response.data);
-          setPostInfo(response.data.postList);
+          console.log("응답 데이터", response.data);
+          setPostInfo(response.data.post);
           console.log(PostInfo);
           setFlag(true);
         }
@@ -68,7 +68,7 @@ function Detail() {
         <p>{PostInfo.content}</p>
       </Post>
       <BtnDiv>
-        <Link to={`/edit/{PostInfo.postNum}`}>
+        <Link to={`/edit/${PostInfo.postNum}`}>
           <button className="edit">수정</button>
         </Link>
         <button className="delete" onClick={() => DeleteHandler()}>
@@ -92,7 +92,7 @@ function Detail() {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </SpinnerDiv>
-      )} */}{" "}
+      )} */}
     </PostDiv>
   );
 }
