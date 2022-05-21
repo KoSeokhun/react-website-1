@@ -84,17 +84,17 @@ router.post("/edit", (req, res) => {
     });
 });
 
-// //글 삭제
-// router.post("/delete", (req, res) => {
-//   Post.deleteOne({ postNum: Number(req.body.postNum) })
-//     .exec()
-//     .then(() => {
-//       res.status(200).json({ success: true });
-//     })
-//     .catch((err) => {
-//       console.log("글 삭제 오류", err);
-//       res.status(400).json({ success: false });
-//     });
-// });
+//글 삭제
+router.post("/delete", (req, res) => {
+  Post.deleteOne({ postNum: Number(req.body.postNum) })
+    .exec()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      console.log("글 삭제 오류", err);
+      res.status(400).json({ success: false });
+    });
+});
 
 module.exports = router; //이거 안해주면 403에러남

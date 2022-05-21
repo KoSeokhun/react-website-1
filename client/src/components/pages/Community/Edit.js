@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-  UploadDiv,
-  UploadForm,
-  UploadButtonDiv,
-} from "../../Style/UploadCSS.js";
+import { UploadDiv, UploadForm, UploadButtonDiv } from "../../Style/UploadCSS";
 import ImageUpload from "./ImageUpload.js";
 
 function Edit() {

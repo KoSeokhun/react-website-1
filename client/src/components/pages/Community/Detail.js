@@ -31,7 +31,7 @@ function Detail() {
       });
   }, []);
 
-  const DeleteHandler = () => {
+  const Delete = () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       let body = {
         postNum: params.postNum,
@@ -39,9 +39,10 @@ function Detail() {
       axios
         .post("/api/post/delete", body)
         .then((response) => {
+          console.log("응답", response);
           if (response.data.success) {
             alert("게시글이 삭제되었습니다.");
-            navigate("/");
+            navigate("/list");
           }
         })
         .catch((err) => {
@@ -71,7 +72,7 @@ function Detail() {
         <Link to={`/edit/${PostInfo.postNum}`}>
           <button className="edit">수정</button>
         </Link>
-        <button className="delete" onClick={() => DeleteHandler()}>
+        <button className="delete" onClick={() => Delete()}>
           삭제
         </button>
       </BtnDiv>
@@ -80,7 +81,7 @@ function Detail() {
               <Link to={`/edit/${PostInfo.postNum}`}>
                 <button className="edit">수정</button>
               </Link>
-              <button className="delete" onClick={() => DeleteHandler()}>
+              <button className="delete" onClick={() => Delete()}>
                 삭제
               </button>
             </BtnDiv>
