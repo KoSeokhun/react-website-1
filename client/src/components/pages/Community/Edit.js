@@ -26,8 +26,8 @@ function Edit() {
           setPostInfo(response.data.post);
           setTitle(response.data.post.title);
           setContent(response.data.post.content);
-          //setImage(response.data.post.image);
-          //console.log("현재 글의 이미지", response.data.post.image);
+          setImage(response.data.post.image);
+          console.log("현재 글의 이미지", response.data.post.image);
 
           setFlag(true);
         }
@@ -59,7 +59,7 @@ function Edit() {
       title: Title,
       content: Content,
       postNum: params.postNum,
-      //image: Image,
+      image: Image,
     };
 
     axios
@@ -89,7 +89,7 @@ function Edit() {
               setTitle(e.currentTarget.value);
             }}
           />
-          {/* <ImageUpload setImage={setImage} /> */}
+          <ImageUpload setImage={setImage} />
           <label htmlFor="content">내용</label>
           <textarea
             id="content"

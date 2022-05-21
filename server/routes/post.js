@@ -1,19 +1,21 @@
 var express = require("express");
 var router = express.Router();
-//const multer = require("multer");
+const multer = require("multer");
+//const multer = require("multer-s3");
 
 //model 사용
 const { Post } = require("../Models/Post.js");
 const { Counter } = require("../Models/Counter.js");
 //const { User } = require("../Model/User.js");
 //모듈로써 이미지 외부저장 함수
-//const setUpload = require("../Util/upload.js");
+const setUpload = require("../Util/upload.js");
 
 //글 제출
 router.post("/submit", (req, res) => {
   let temp = {
     title: req.body.title,
     content: req.body.content,
+    image: req.body.image,
   };
   Counter.findOne({ name: "counter" })
     .exec()
@@ -71,7 +73,7 @@ router.post("/edit", (req, res) => {
   let temp = {
     title: req.body.title,
     content: req.body.content,
-    //image: req.body.image,
+    image: req.body.image,
   };
   Post.updateOne({ postNum: Number(req.body.postNum) }, { $set: temp })
     .exec()
@@ -96,5 +98,43 @@ router.post("/delete", (req, res) => {
       res.status(400).json({ success: false });
     });
 });
+
+/*
+//Multer 사용
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "image/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage: storage }).single("file");
+
+//이미지 서버에 업로드
+router.post("/image/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.log("이미지 업로드 에러", err);
+      res.status(400).json({ success: false });
+    } else {
+      console.log("서버에 이미지 데이터 업로드됨", res.req.file);
+      res.status(200).json({ success: true, filepath: res.req.file.path });
+    }
+  });
+});
+*/
+
+//네이버 클라우드 (외부저장소)에 이미지 업로드
+//setUpload에서 기능이 구현이 되므로 미들웨어를 통해 setUpload()함수를 next인자로 주고
+//setUpload에서 bucket의 인자값으로 줄 것을 넘겨준다 : "react-study/post"
+router.post(
+  "/image/upload",
+  setUpload("react-study/post"),
+  (req, res, next) => {
+    res.status(200).json({ success: true, filepath: res.req.file.location });
+  }
+);
 
 module.exports = router; //이거 안해주면 403에러남

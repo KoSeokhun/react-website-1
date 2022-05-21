@@ -57,6 +57,12 @@ function Detail() {
       {/* {Flag ? ( */}
       <Post>
         {<h1>{PostInfo.title}</h1>}
+        <img
+          //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
+          src={PostInfo.image}
+          alt=""
+          style={{ width: "80%", height: "auto" }}
+        />
         {/* <h3>{PostInfo.author.displayName}</h3> */}
         {/* {PostInfo.image ? (
               <img
