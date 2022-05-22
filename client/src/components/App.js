@@ -17,6 +17,7 @@ import Callback from './pages/SignIn/Naver/Callback';
 import Undefined from './pages/Undefined/Undefined';
 import Recruitment from './pages/Recruitment/Recruitment';
 import Information from './pages/Recruitment/Information/Information';
+import ResetPassword from './pages/ResetUser/ResetPassword';
 
 function App() {
   // BottomNavbar on, off
@@ -61,6 +62,9 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/auth/naver/callback' element={<Callback />} />
+
+          {/* ResetPasswordPage */}
+          <Route path='/reset-password/:token' element={<ResetPassword />} />
 
           {/* Loading page */}
           <Route path='/undefined' element={<Undefined />} />

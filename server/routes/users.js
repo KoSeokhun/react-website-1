@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
+const { ResetPasswordToken } = require("../models/ResetPasswordToken");
 const { auth } = require("../middleware/auth");
 const axios = require('axios');
+const moment = require('moment');
 
 //=================================
 //             User
@@ -200,6 +202,7 @@ router.post('/findUser', (req, res) => {
             } else {
                 return res.status(200).json({
                     findSuccess: true,
+                    user: user
                 });
             }
         });
@@ -217,6 +220,103 @@ router.get('/auth', auth, (req, res) => {
         Nickname: req.user.Nickname,
         role: req.user.role,
         image: req.user.image,
+    });
+});
+
+router.post('/generateToken', (req, res) => {
+    const query = {
+        [`${req.body.dataType}`]: `${req.body.value}`
+    };
+
+    const resetPasswordTokenSchema = new ResetPasswordToken(query)
+    resetPasswordTokenSchema.save((err, resetPasswordTokenInfo) => {
+        resetPasswordTokenInfo.generateToken((err, resetPasswordToken) => {
+            if (err) return res.status(400).send(err);
+            res.status(200)
+                .json({
+                    generatePasswordTokenSuccess: true,
+                    token: resetPasswordToken.token,
+                });
+        });
+        if (err) return res.json({
+            generatePasswordTokenSuccess: false,
+            err
+        });
+    });
+});
+
+router.post('/isEmailSent', (req, res) => {
+    const query = {
+        [`${req.body.dataType}`]: `${req.body.value}`
+    };
+    ResetPasswordToken.findOne(query, (err, user) => {
+        if (user) { // DB에 user 정보가 있으면
+            const timestamps = moment().unix();
+            if (user.tokenIss + user.tokenExp < timestamps) {
+                // 인증 유효시간이 만료되었으면
+                return res.json({
+                    isEmailSent: false,
+                    shouldDelete: true,
+                    message: "토큰 인증 유효시간이 만료되었습니다."
+                })
+            } else {
+                // 인증 유효시간이 아직 만료되지 않았으면
+                return res.json({
+                    isEmailSent: true,
+                    message: "토큰 인증 시간이 아직 유효합니다."
+                })
+            }
+        } else { // DB에 user 정보가 없으면
+            return res.json({
+                isEmailSent: false,
+                message: "토큰이 삭제되었거나, 비밀번호 초기화 이메일을 보낸 적 없습니다."
+            })
+        }
+    });
+});
+
+router.post('/deleteToken', (req, res) => {
+    const query = {
+        [`${req.body.dataType}`]: `${req.body.value}`
+    };
+    ResetPasswordToken.findOneAndDelete(query, (err, user) => {
+        if (err) return res.json({
+            deleteTokenSuccess: false,
+            err,
+        });
+        res.status(200).json({
+            deleteTokenSuccess: true,
+            user
+        })
+    })
+});
+
+router.post('/resetPassword', (req, res) => {
+    const query = {
+        [`${req.body.dataType}`]: `${req.body.value}`
+    };
+    ResetPasswordToken.findOne(query, (err, user) => {
+        if (user) {
+            const filter = { email: user.email };
+            const update = { password: req.body.password };
+            User.findOne(filter, (err, user) => {
+                user.set(update);
+                user.save((err, userInfo) => {
+                    if (err) return res.json({
+                        resetPasswordSuccess: false,
+                        err
+                    })
+                    return res.status(200).json({
+                        resetPasswordSuccess: true,
+                    });
+                });
+            });
+        } else {
+            return res.json({
+                resetPasswordSuccess: false,
+                message: 'user undefined.',
+            });
+        }
     });
 });
 
