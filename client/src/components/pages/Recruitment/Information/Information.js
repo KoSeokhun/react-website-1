@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { fetchData } from "../../../../_actions/data_action";
+import './Information.css'
 
 function Information() {
     const dispatch = useDispatch();
@@ -36,10 +37,10 @@ function Information() {
         }
         function fetchSaraminData(dataToSubmit) {
             dispatch(fetchData(dataToSubmit))
-                .then(res => { console.log(res); return res.payload.data })
+                .then(res => { console.log(JSON.stringify(res)); return res.payload.data })
                 .then(data => {
-                    console.log(data[0]);
-                    setSaraminData(data[0].title);
+                    console.log(data);
+                    setSaraminData(data);
                 })
 
         }
@@ -65,12 +66,42 @@ function Information() {
         fetchJobkoreaData(dataToSubmit);
     }, [Career, Location, Salary]);
 
+    const renderSarmainData = SaraminData.map((item, index) => {
+        return <tr key={index}>
+            <td>{item.title}</td>
+            <a href={`https://www.saramin.co.kr${item.url}`}>자세히 보러가기</a>
+            <td>{item.date}</td>
+            <td>{item.condition}</td>
+            <td>{item.sector}</td>
+            <td>{item.corp}</td>
+            <td>{item.affiliate}</td>
+        </tr>
+    })
+
+
     return (
-        <>
-            <div>Information</div>
-            {SaraminData && (<div>{SaraminData}</div>)}
-            {JobkoreaData && (<div>{JobkoreaData}</div>)}
-        </>
+        <div className='wrapper'>
+            <h2>Information</h2>
+            <hr />
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>URL</th>
+                        <th>Date</th>
+                        <th>Condition</th>
+                        <th>Sector</th>
+                        <th>Corp</th>
+                        <th>Affiliate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {SaraminData && renderSarmainData}
+                    {/* {JobkoreaData && renderJobkoreaData} */}
+                </tbody>
+            </table>
+        </div>
     )
 }
 

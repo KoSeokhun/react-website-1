@@ -1,5 +1,15 @@
 import axios from "axios";
-import { LOGIN_USER, NAVER_LOGIN_USER, REGISTER_USER, AUTH_USER, FIND_USER } from "./types";
+import {
+    LOGIN_USER,
+    NAVER_LOGIN_USER,
+    REGISTER_USER,
+    AUTH_USER,
+    FIND_USER,
+    GENERATE_TOKEN,
+    IS_EMAIL_SENT,
+    DELETE_TOKEN,
+    RESET_PASSWORD,
+} from "./types";
 
 export function loginUser(dataToSubmit) {
     const request = axios.post('/api/users/login', dataToSubmit)
@@ -37,6 +47,46 @@ export function findUser(dataToSubmit) {
 
     return {
         type: FIND_USER,
+        payload: request
+    }
+}
+
+export function generateToken(dataToSubmit) {
+    const request = axios.post('/api/users/generateToken', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: GENERATE_TOKEN,
+        payload: request
+    }
+}
+
+export function isEmailSent(dataToSubmit) {
+    const request = axios.post('/api/users/isEmailSent', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: IS_EMAIL_SENT,
+        payload: request
+    }
+}
+
+export function deleteToken(dataToSubmit) {
+    const request = axios.post('/api/users/deleteToken', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: DELETE_TOKEN,
+        payload: request
+    }
+}
+
+export function resetPassword(dataToSubmit) {
+    const request = axios.post('/api/users/resetPassword', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: RESET_PASSWORD,
         payload: request
     }
 }

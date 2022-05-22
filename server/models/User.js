@@ -41,7 +41,6 @@ const userSchema = mongoose.Schema({
 userSchema.pre('save', function (next) {
     //비밀번호를 암호화 시키는 과정
     var user = this
-
     if (user.isModified('password')) {
         bcrypt.genSalt(saltRounds, function (err, salt) {
             if (err) return next(err)

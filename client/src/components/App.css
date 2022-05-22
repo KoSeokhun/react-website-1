@@ -12,7 +12,8 @@
 .community,
 .store,
 .wtg,
-.undefined {
+.undefined,
+.profile {
     display: flex;
     height: 90vh;
     align-items: center;
