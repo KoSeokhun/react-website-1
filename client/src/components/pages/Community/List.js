@@ -12,7 +12,6 @@ function List(props) {
       return moment(a).format("YYYY년 MMMM Do, hh:mm");
     }
   };
-  console.log(props);
   return (
     <ListDiv>
       {props.PostList.map((post, index) => {
@@ -22,6 +21,7 @@ function List(props) {
             <Link to={`/post/${post.postNum}`}>
               <p className="title">{post.title}</p>
               <div className="author">
+                <p> {post.author.Nickname}</p>
                 <p className="time">
                   {SetTime(post.createdAt, post.updatedAt)}
                 </p>

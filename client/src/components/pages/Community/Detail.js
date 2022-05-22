@@ -33,7 +33,6 @@ function Detail() {
         if (response.data.success) {
           console.log("응답 데이터", response.data);
           setPostInfo(response.data.post);
-          console.log(PostInfo);
           setFlag(true);
         }
       })
@@ -53,7 +52,7 @@ function Detail() {
           console.log("응답", response);
           if (response.data.success) {
             alert("게시글이 삭제되었습니다.");
-            navigate("/list");
+            navigate("/community");
           }
         })
         .catch((err) => {
@@ -70,25 +69,20 @@ function Detail() {
         <h1>{PostInfo.title}</h1>
         <div className="author">
           {/* <h3>{PostInfo.author.displayName}</h3> */}
+          <p className="time">
+            {SetTime(PostInfo.createdAt, PostInfo.updatedAt)}
+            {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}
+          </p>
+        </div>
+        {PostInfo.image ? (
           <img
             //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
             src={PostInfo.image}
             alt=""
             style={{ width: "80%", height: "auto" }}
           />
-          {/* {PostInfo.image ? (
-              <img
-                //src={`http://localhost:5002/${PostInfo.image}`} -> 서버에 저장
-                src={PostInfo.image}
-                alt=""
-                style={{ width: "80%", height: "auto" }}
-              />
-            ) : null} */}
-          <p className="time">
-            {SetTime(PostInfo.createdAt, PostInfo.updatedAt)}
-            {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}
-          </p>
-        </div>
+        ) : null}
+
         <p>{PostInfo.content}</p>
       </Post>
       <BtnDiv>

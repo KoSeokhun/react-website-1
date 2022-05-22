@@ -3,12 +3,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UploadDiv, UploadForm, UploadButtonDiv } from "../../Style/UploadCSS";
 import ImageUpload from "./ImageUpload";
+import Auth from "../../../hoc/auth";
+import { useSelector } from "react-redux";
 
 function Upload(props) {
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   const [Image, setImage] = useState("");
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.userData); //userData라는 obj를 끝까지 파고들어야했음
+  //store와 reducer로 받아옴 user
+
+  console.log("현재 로그인되어있는 유저", user);
   const onSubmit = (e) => {
     e.preventDefault();
     if (Title === "" || Content === "") {
@@ -18,14 +24,15 @@ function Upload(props) {
       title: Title,
       content: Content,
       image: Image,
+      uid: user._id, //데이터저장한것과 일치한것으로 불러와야하고
     };
-
+    //console.log("28 line" + JSON.stringify(body));
     axios
       .post("/api/post/submit", body)
       .then((response) => {
         if (response.data.success) {
           alert("글 작성이 완료되었습니다.");
-          navigate("/community"); //  "/"에서 "/community" (리스트)로 변경 예정
+          navigate("/community");
         } else {
           alert("글 작성에 실패하였습니다");
         }
@@ -71,4 +78,4 @@ function Upload(props) {
   );
 }
 
-export default Upload;
+export default Auth(Upload, true);

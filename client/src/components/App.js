@@ -68,7 +68,7 @@ function App() {
           {/* Community post */}
 
           <Route path="/upload" element={<Upload />} />
-          <Route path="/list" element={<Community />} />
+          <Route path="/list" element={<ComMain />} />
           <Route path="/post/:postNum" element={<Detail />}></Route>
           <Route path="/edit/:postNum" element={<Edit />}></Route>
 

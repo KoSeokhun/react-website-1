@@ -9,9 +9,11 @@ const { Counter } = require("../Models/Counter.js");
 //const { User } = require("../Model/User.js");
 //모듈로써 이미지 외부저장 함수
 const setUpload = require("../Util/upload.js");
+const { User } = require("../models/User.js");
 
 //글 제출
 router.post("/submit", (req, res) => {
+  console.log("16line" + req.body); // -여기서 지금 uid가 안나온다.
   let temp = {
     title: req.body.title,
     content: req.body.content,
@@ -21,15 +23,20 @@ router.post("/submit", (req, res) => {
     .exec()
     .then((counter) => {
       temp.postNum = counter.postNum;
-      console.log(temp);
-      const CommunityPost = new Post(temp);
-      CommunityPost.save().then(() => {
-        Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
-          () => {
-            res.status(200).json({ success: true });
-          }
-        );
-      });
+      User.findOne({ _id: req.body.uid }) // _id가 DB에 지정된 이름. 키값 정확히 지정해줘야함
+        .exec()
+        .then((userInfo) => {
+          temp.author = userInfo._id;
+          const CommunityPost = new Post(temp);
+          CommunityPost.save().then(() => {
+            Counter.updateOne(
+              { name: "counter" },
+              { $inc: { postNum: 1 } }
+            ).then(() => {
+              res.status(200).json({ success: true });
+            });
+          });
+        });
     })
     .catch((error) => {
       console.log("글 제출 오류", error);
@@ -39,10 +46,16 @@ router.post("/submit", (req, res) => {
 
 //글 목록
 router.post("/list", (req, res) => {
-  // Post.find()
-  //   .populate("author") //키를 populate걸어준다 -> doc에 저장된 데이터 중 Obj ID로 저장된거 찾아서
-  //   .exec()
+  let sort = {};
+  if (req.body.sort === "최신순") sort.createdAt = -1;
+  // } else {
+  //   //인기순 -> 댓글 많은 순으로 감
+  //   //sort.repleNum = -1;
+
+  // }
   Post.find()
+    .populate("author") //키를 populate걸어준다 -> doc에 저장된 데이터 중 Obj ID로 저장된거 찾아서
+    .sort(sort) //조건을 걸어둔 sort 지정
     .exec()
     .then((doc) => {
       res.status(200).json({ success: true, postList: doc });
@@ -55,7 +68,7 @@ router.post("/list", (req, res) => {
 //글 세부
 router.post("/detail", (req, res) => {
   Post.findOne({ postNum: Number(req.body.postNum) }) //postNum을 string -> number로 형변환
-    // .populate("author")
+    .populate("author")
     .exec()
     .then((doc) => {
       console.log("글 세부 데이터", doc);
