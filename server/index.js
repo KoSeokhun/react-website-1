@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const config = require("./config/key"); //key 설정 모듈
-const port = process.env.PORT || 5003;
+const port = process.env.PORT || 5001;
 const mongoose = require("mongoose");
 
 mongoose
