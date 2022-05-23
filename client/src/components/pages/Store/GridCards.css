@@ -9,7 +9,7 @@
     flex-direction: row;
     justify-items: start;
     align-items: center;
-    height: 150px;
+    height: 170px;
     border-bottom: 1px solid #d7d7d7;
     width: 900px;
 }
@@ -17,8 +17,9 @@
 .shop {
     display: flex;
     align-items: center;
-    padding-right: 24px;
+    padding-right: 30px;
     min-width: 300px;
+    
 }
 
 .shop h1 {

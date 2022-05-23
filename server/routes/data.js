@@ -58,11 +58,12 @@ router.post("/saramin", auth, (req, res) => {
     console.log('사람인 라우터 들어옴 : ' + req.body.loc_mcd + ' ' + req.body.sal_min + ' ' + req.body.searchword)
     const getData = async () => {
         try {
-            const URL = 'https://www.saramin.co.kr/zf_user/search?searchType=search&company_cd=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C9%2C10'
+            const URL = `https://www.saramin.co.kr/zf_user/search${req.body.searchword}`  // ex) 소프트웨어+개발자
+                + '&searchType=search&company_cd=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C9%2C10'
                 + `&loc_mcd=${req.body.loc_mcd}` // ex) 101000
                 + `&sal_min=${req.body.sal_min}&keydownAccess=` // ex) 11
-                + `&searchword=${req.body.searchword}` // ex) 소프트웨어+개발자
                 + '&panel_type=&search_optional_item=y&search_done=y&panel_count=y&abType=b';
+            console.log('URL : ' + URL);
             const html = await axios.get(URL);
             let divList = [];
             const $ = cheerio.load(html.data);

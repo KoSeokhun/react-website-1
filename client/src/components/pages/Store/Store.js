@@ -33,7 +33,7 @@ export default function Store() {
       .then(response => response.json())
       .then(response => {
 
-        console.log(response.ListPriceModelStoreService);
+        //console.log(response.ListPriceModelStoreService);
         setShopdata(response.ListPriceModelStoreService.row);
         setMainShopImage('https://images.unsplash.com/photo-1455849318743-b2233052fcff?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338')
         setCurrentPage(response.ListPriceModelStoreService.row)
@@ -75,7 +75,7 @@ export default function Store() {
         />
       }
 
-      <Store_Cards />
+    { shopdata && <Store_Cards shopdata={shopdata}/>}
 
       <div style={{ width: '85%', margin: '1rem auto' }}>
 
@@ -106,11 +106,13 @@ export default function Store() {
         <Row gutter={[16, 16]} >
 
           {shopdata && shopdata.map((shop, index) => (
+            //console.log('line 109 shop : ' + JSON.stringify(shop)),
             <React.Fragment key={index}>
               <GridCards
                 // image={shop.SH_PHOTO ?
                 //   `${SHOP_IMAGE_URL}w500${shop.SH_PHOTO}` : null}
                 // image={`${SHOP_IMAGE_URL}`}
+                shopData={shop}
                 shopId={shop.SH_ID}
                 shopName={shop.SH_NAME}
                 shopInfo={shop.SH_INFO}
