@@ -1,32 +1,34 @@
 import React from 'react'
 import CardItem from '../CardItem/CardItem'
 import './Cards.css';
+// import GridCards from './GridCards';
+// import { Row } from 'antd';
 
 function Cards() {
     return (
         <div className='cards'>
-            <h1>Check out these EPIC Destinations!</h1>
+            <h1>서울시가 지정한 저렴한 가격의 착한 가게들을 한번 둘러보세요!</h1>
             <div className='cards__container'>
                 <div className='cards__wrapper'>
                     {/* 추가 */}
                     <ul className='cards__items'>
                         <CardItem
-                            src={require('../images/img-5.jpg')}
-                            text='취준생들과 함께 정보를 공유해보세요.'
-                            label='취준 커뮤니티'
-                            path='/community'
+                            src={require('../images/img-20.jpg')}
+                            text='주변보다 저렴한 가격으로 서비스하며 어르신 파마와 커트 시 할인해주는 업소.'
+                            label='장미미용실'
+                            path='/store/00000263'
                         />
                         <CardItem
-                            src={require('../images/img-6.jpg')}
-                            text='내 주변 착한가게들을 검색해보세요.'
-                            label='착한가게'
-                            path='/store2'
+                            src={require('../images/img-21.jpg')}
+                            text='시간연장 서비스 만빵!!! 학생분들 환영합니다. 학생은 왕이다..'
+                            label='홍노래방'
+                            path='/store/00000272'
                         />
                         <CardItem
-                            src={require('../images/img-7.jpg')}
-                            text='와이파이/따릉이/공간을 빌려보세요.'
-                            label='와따공'
-                            path='/wtg'
+                            src={require('../images/img-22.jpg')}
+                            text='청결한 위생관리와 매일 싱싱한 재료로 요리하며 종업원 모두가 성심성의껏 손님을 대함.'
+                            label='무진장'
+                            path='/store/00000443'
                         />
                     </ul>
                 </div>

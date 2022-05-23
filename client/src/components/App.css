@@ -58,8 +58,8 @@
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;
-    color: #fff;
-    font-size: 100px;
+    color: black;
+    font-size: 30px;
     margin-top: -80px;
 }
 
@@ -71,5 +71,9 @@
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
+    margin-top: -80px;
+}
+
+.msi{
     margin-top: -80px;
 }

@@ -17,6 +17,9 @@ import Callback from './pages/SignIn/Naver/Callback';
 import Undefined from './pages/Undefined/Undefined';
 import Recruitment from './pages/Recruitment/Recruitment';
 import Information from './pages/Recruitment/Information/Information';
+import StoreDetail from './pages/StoreDetail/StoreDetail';
+import Auth from "../hoc/auth"
+
 
 function App() {
   // BottomNavbar on, off
@@ -48,8 +51,10 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route path='/community' element={<Community />} />
           <Route path='/store' element={<Store />} />
+          <Route path='/store/:shopId' element={<StoreDetail />} />
           <Route path='/wtg' element={<Wtg />} />
           <Route path='/profile' element={<Profile />} />
+          <Route exact path="/store/:shopId" component={Auth(StoreDetail, null)} />
 
           {/* 추가 */}
           <Route path='/services' element={<Services />} />
