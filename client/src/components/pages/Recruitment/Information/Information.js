@@ -42,15 +42,15 @@ function Information() {
                     console.log(data);
                     setSaraminData(data);
                 })
-
         }
         fetchSaraminData(dataToSubmit);
     }, [Career, Location, Salary]);
 
     useEffect(() => {
+        let arr = Career.split('=');
         const dataToSubmit = {
             site: 'jobkorea',
-            stext: Career,
+            stext: arr[1],
             local: Location,
             payMin: Salary,
         }
@@ -58,10 +58,9 @@ function Information() {
             dispatch(fetchData(dataToSubmit))
                 .then(res => { console.log(res); return res.payload.data })
                 .then(data => {
-                    console.log(data[0]);
-                    setJobkoreaData(data[0].title);
+                    console.log(data);
+                    setJobkoreaData(data);
                 })
-
         }
         fetchJobkoreaData(dataToSubmit);
     }, [Career, Location, Salary]);
@@ -69,7 +68,7 @@ function Information() {
     const renderSarmainData = SaraminData.map((item, index) => {
         return <tr key={index}>
             <td>{item.title}</td>
-            <a href={`https://www.saramin.co.kr${item.url}`}>자세히 보러가기</a>
+            <td> <a href={`https://www.saramin.co.kr${item.url}`}>사람인으로 자세히 보러가기</a></td>
             <td>{item.date}</td>
             <td>{item.condition}</td>
             <td>{item.sector}</td>
@@ -78,6 +77,17 @@ function Information() {
         </tr>
     })
 
+    const renderJobkoreaData = JobkoreaData.map((item, index) => {
+        return <tr key={index}>
+            <td>{item.title}</td>
+            <td><a href={`https://www.jobkorea.co.kr${item.url}`}>잡코리아로 자세히 보러가기</a></td>
+            <td>{item.date}</td>
+            <td>{item.condition}</td>
+            <td>{item.sector}</td>
+            <td>{item.corp}</td>
+            <td></td>
+        </tr>
+    })
 
     return (
         <div className='wrapper'>
@@ -98,7 +108,7 @@ function Information() {
                 </thead>
                 <tbody>
                     {SaraminData && renderSarmainData}
-                    {/* {JobkoreaData && renderJobkoreaData} */}
+                    {JobkoreaData && renderJobkoreaData}
                 </tbody>
             </table>
         </div>

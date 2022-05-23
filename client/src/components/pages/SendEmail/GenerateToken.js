@@ -4,16 +4,20 @@ import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from '../
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { generateToken, isEmailSent, deleteToken, } from '../../../_actions/user_action';
+import moment from 'moment';
+import axios from 'axios';
 
 // 비밀번호 초기화 이메일 전송 버튼
 const GenerateToken = (props) => {
     const dispatch = useDispatch();
     const [Activate, setActivate] = useState(true);
     const [Reason, setReason] = useState('');
+    const timestamps = moment().unix();
 
     const dataToSubmit = {
         dataType: 'email',
         value: props.email,
+        timestamps,
     }
 
     const genToken = () => dispatch(generateToken(dataToSubmit))
@@ -28,6 +32,17 @@ const GenerateToken = (props) => {
 
     const fetchData = () => dispatch(isEmailSent(dataToSubmit))
         .then(res => res.payload)
+
+    const logoutHandler = () => {
+        axios.get("/api/users/logout").then((response) => {
+            if (response.status === 200) {
+                window.localStorage.removeItem("userId");
+                alert("Log Out succeeded");
+            } else {
+                alert("Log Out Failed");
+            }
+        });
+    };
 
     if (Activate)
         return <Button onClick={async () => {
@@ -53,8 +68,9 @@ const GenerateToken = (props) => {
                 sendEmail(templateParams);
                 setReason('비밀번호 초기화 이메일을 보냈습니다!');
                 setActivate(!Activate);
+                logoutHandler();
             }
-        }} disabled={!Activate}>비밀번호 초기화 이메일 보내기</Button>
+        }} disabled={!Activate}> 비밀번호 초기화 이메일 보내기</Button >
     else
         return <div>{Reason}</div>
 }

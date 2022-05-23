@@ -91,6 +91,11 @@ function Navbar() {
                 Wtg
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/recruitment" className="nav-links" onClick={closeMobileMenu}>
+                Recruitment
+              </Link>
+            </li>
             {/* 추가 */}
             {user.userData && !user.userData.isAuth ? (
               <>
