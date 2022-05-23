@@ -249,9 +249,10 @@ router.post('/isEmailSent', (req, res) => {
     const query = {
         [`${req.body.dataType}`]: `${req.body.value}`
     };
+    const timestamps = req.body.timestamps;
+
     ResetPasswordToken.findOne(query, (err, user) => {
         if (user) { // DB에 user 정보가 있으면
-            const timestamps = moment().unix();
             if (user.tokenIss + user.tokenExp < timestamps) {
                 // 인증 유효시간이 만료되었으면
                 return res.json({

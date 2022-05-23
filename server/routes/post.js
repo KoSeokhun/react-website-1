@@ -4,9 +4,9 @@ const multer = require("multer");
 //const multer = require("multer-s3");
 
 //model 사용
-const { Post } = require("../Models/Post.js");
-const { Counter } = require("../Models/Counter.js");
-//const { User } = require("../Model/User.js");
+const { Post } = require("../models/Post.js");
+const { Counter } = require("../models/Counter.js");
+//const { User } = require("../model/User.js");
 //모듈로써 이미지 외부저장 함수
 const setUpload = require("../Util/upload.js");
 const { User } = require("../models/User.js");

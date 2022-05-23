@@ -3,6 +3,7 @@ import Auth from '../../../hoc/auth';
 import { useDispatch } from 'react-redux';
 import { auth } from '../../../_actions/user_action';
 import './Profile.css'
+import GenerateToken from '../SendEmail/GenerateToken';
 
 function Profile() {
     const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function Profile() {
             {/* <span>{_id}<br /></span> */}
             {oAuthId ? oAuthId.length === 10 ? <div className='account_data'>카카오로 로그인</div> : <div className='account_data'>네이버로 로그인</div> : <div className='account_data'>알뜰리에로 로그인</div>}
             {/* <span>{isAdmin}<br /></span> */}
+            {oAuthId == null && <GenerateToken email={email} />}
             {isAuth && <span className='account_data'>isAuth : {isAuth}<br /></span>}
             {email && <span className='account_data'>이메일 : {email}<br /></span>}
             {name && <span className='account_data'>이름 : {name}<br /></span>}

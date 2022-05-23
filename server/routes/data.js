@@ -105,21 +105,27 @@ router.post("/saramin", auth, (req, res) => {
 });
 
 router.post("/jobkorea", auth, (req, res) => {
+    console.log('잡코리아 라우터 들어옴 : ' + req.body.local + ' ' + req.body.payMin + ' ' + req.body.stext)
     const getData = async () => {
         try {
-            const html = await axios.get("https://www.yna.co.kr/sports/all");
+            const URL = `https://www.jobkorea.co.kr/Search/?stext=${req.body.stext}` // ex) 소프트웨어%20개발자
+                + `&local=${req.body.local}` // ex) I000
+                + '&payType=1'
+                + `&payMin=${req.body.payMin}`; // ex) 5000
+            console.log('URL : ' + URL);
+            const html = await axios.get(URL);
             let ulList = [];
             const $ = cheerio.load(html.data);
-            const $bodyList = $("div.list-type038 ul li").children("div.item-box01");
+            const $bodyList = $("div.list-default ul.clear li.list-post").children("div.post");
 
             $bodyList.each(function (i, elem) {
                 ulList[i] = {
-                    title: $(this).find('div.news-con a.tit-wrap strong.tit-news').text(),
-                    url: $(this).find('div.news-con a.tit-wrap').attr('href'),
-                    image_url: $(this).find('figure.img-con a img').attr('src'),
-                    image_alt: $(this).find('figure.img-con a img').attr('alt'),
-                    summary: $(this).find('p.lead').text().slice(0, -11),
-                    date: $(this).find('div.info-box01 span.txt-time').text()
+                    title: $(this).find('div.post-list-info a.title').text(),
+                    url: $(this).find('div.post-list-info a.title').attr('href'),
+                    date: $(this).find('div.post-list-info p.option span.date').text(),
+                    condition: $(this).find('div.post-list-info p.option').text(),
+                    sector: $(this).find('div.post-list-info p.etc').text(),
+                    corp: $(this).find('div.post-list-corp a.name').text(),
                 };
             });
 
