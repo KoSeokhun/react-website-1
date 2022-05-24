@@ -73,19 +73,19 @@ function StoreDetail(props) {
                 <img src={shopData.SH_PHOTO} />
               </div>
               <div className="box" key={shopData.SH_ID}>
-                <div>{shopData.SH_NAME}</div>
+                <div>가게 이름 : {shopData.SH_NAME}</div>
                 <br></br>
-                <div>{shopData.SH_ADDR}</div>
+                <div>주소 : {shopData.SH_ADDR}</div>
                 <br></br>
-                <div> {shopData.SH_INFO}</div>
+                <div>가게 정보 : {shopData.SH_INFO}</div>
                 <br></br>
-                <div> {shopData.INDUTY_CODE_SE_NAME}</div>
+                <div>업종 : {shopData.INDUTY_CODE_SE_NAME}</div>
                 <br></br>
-                <div> {shopData.SH_PHONE}</div>
+                <div>전화번호 : 02-{shopData.SH_PHONE}</div>
                 <br></br>
-                <div> {shopData.SH_WAY}</div>
+                <div>찾아오시는 길 : {shopData.SH_WAY}</div>
                 <br></br>
-                <div> {shopData.SH_PRIDE}</div>
+                <div>자랑거리 : {shopData.SH_PRIDE}</div>
 
 
               </div>
