@@ -6,6 +6,7 @@ import { registerUser, findUser, } from "../../../_actions/user_action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../../hoc/auth";
+import './SignUp.css';
 
 import {
     Form,
@@ -68,6 +69,7 @@ function SignUp() {
 
     return (
         <>
+            <h1 className="sign-up-h1">SIGN UP</h1>
             <Formik
                 initialValues={{
                     email: '',
@@ -133,7 +135,7 @@ function SignUp() {
                         handleReset,
                     } = props;
                     return (
-                        <div className="app" style={{ paddingTop: '5rem', width: '350px', margin: '0 auto' }}>
+                        <div className="sign-up">
                             <Title level={2} style={{ textAlign: 'center' }}>Sign up</Title>
                             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
