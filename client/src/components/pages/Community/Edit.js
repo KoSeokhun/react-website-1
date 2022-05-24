@@ -12,6 +12,7 @@ function Edit() {
   const [Title, setTitle] = useState("");
   const [PostInfo, setPostInfo] = useState({}); // Object type
   const [Image, setImage] = useState("");
+  const [Author, setAuthor] = useState("");
   const [Flag, setFlag] = useState(false);
 
   //글 정보 불러오기
@@ -27,7 +28,7 @@ function Edit() {
           setTitle(response.data.post.title);
           setContent(response.data.post.content);
           setImage(response.data.post.image);
-          console.log("현재 글의 이미지", response.data.post.image);
+          setAuthor(response.data.post.author);
 
           setFlag(true);
         }
@@ -67,7 +68,14 @@ function Edit() {
       .then((response) => {
         if (response.data.success) {
           alert("글 수정이 완료되었습니다.");
-          navigate(`/post/${params.postNum}`);
+          navigate(`/post/${params.postNum}`, {
+            state: {
+              postNum: params.postNum,
+              title: Title,
+              content: Content,
+              author: Author,
+            },
+          });
         } else {
           alert("글 수정에 실패하였습니다");
         }
