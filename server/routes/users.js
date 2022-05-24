@@ -321,6 +321,24 @@ router.post('/resetPassword', (req, res) => {
     });
 });
 
+router.post('/modifyUser', (req, res) => {
+    const filter = { email: req.body.email };
+    const update = {
+        name: req.body.name,
+        Nickname: req.body.Nickname,
+    };
+
+    User.findOneAndUpdate(filter, update, (err, user) => {
+        if (err) return res.json({
+            modifySuccess: false,
+            err
+        });
+        return res.status(200).json({
+            modifySuccess: true
+        });
+    });
+});
+
 router.get('/logout', auth, (req, res) => {
 
     User.findOneAndUpdate(

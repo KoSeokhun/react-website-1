@@ -25,7 +25,7 @@ function ComMain() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [Sort]);
   return (
     <div>
       <Link to="/upload">글쓰기</Link>

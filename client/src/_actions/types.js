@@ -8,3 +8,4 @@ export const GENERATE_TOKEN = "generate_token";
 export const RESET_PASSWORD = "reset_password";
 export const IS_EMAIL_SENT = "is_email_sent";
 export const DELETE_TOKEN = "delete_token";
+export const MODIFY_USER = "modify_user";

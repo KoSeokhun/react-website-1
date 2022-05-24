@@ -9,6 +9,7 @@ import {
     IS_EMAIL_SENT,
     DELETE_TOKEN,
     RESET_PASSWORD,
+    MODIFY_USER,
 } from "./types";
 
 export function loginUser(dataToSubmit) {
@@ -87,6 +88,16 @@ export function resetPassword(dataToSubmit) {
 
     return {
         type: RESET_PASSWORD,
+        payload: request
+    }
+}
+
+export function modifyUser(dataToSubmit) {
+    const request = axios.post('/api/users/modifyUser', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: MODIFY_USER,
         payload: request
     }
 }

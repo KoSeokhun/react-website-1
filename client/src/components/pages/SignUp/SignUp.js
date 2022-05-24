@@ -142,7 +142,7 @@ function SignUp() {
                                         id="name"
                                         placeholder="Enter your name"
                                         type="text"
-                                        value={values.name} // true or false
+                                        value={values.name}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         className={
