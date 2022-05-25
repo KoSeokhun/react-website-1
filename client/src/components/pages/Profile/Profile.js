@@ -88,7 +88,8 @@ function Profile() {
         <>
             {!ModifyMode &&
                 <>
-                    <h1>Profile</h1>
+                    <h1 className='profile-h1'>Profile</h1>
+                    <h1 style={{ marginTop: '3rem', marginBottom: '2rem', }}>ALLTELER ID</h1>
                     <div id='wrapper' className='wrapper'>
                         <img className='profile_img' src={image} alt='프로필 이미지 없음' height='200' width='200' />
                         {oAuthId ? oAuthId.length === 10 ? <div className='account_data'>카카오로 로그인</div> : <div className='account_data'>네이버로 로그인</div> : <div className='account_data'>알뜰리에로 로그인</div>}
@@ -99,17 +100,19 @@ function Profile() {
                         </div>
                         {name && <span className='account_data'>이름 : {name}<br /></span>}
                         {Nickname && <span className='account_data'>닉네임 : {Nickname}<br /></span>}
-                        <Button onClick={modifyModeOn} type="primary" className='account_data' disabled={ModifyMode} >
-                            내 정보 수정하기
-                        </Button>
+                        <div className='account_data'>
+                            <Button onClick={modifyModeOn} type="primary" disabled={ModifyMode} >
+                                내 정보 수정하기
+                            </Button>
+                        </div>
                     </div>
                 </>
             }
 
             {ModifyMode &&
                 <>
-                    <h1>Profile</h1>
-
+                    <h1 className='profile-h1'>Profile</h1>
+                    <h1 style={{ marginTop: '3rem', marginBottom: '2rem', }}>ALLTELER ID</h1>
                     <Formik
                         initialValues={{
                             name: name,

@@ -39,4 +39,5 @@ function ComMain() {
   );
 }
 
-export default ComMain;
+export default ComMain
+// export default Auth(ComMain, null);

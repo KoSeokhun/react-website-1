@@ -34,7 +34,7 @@ const Naver = () => {
             <div ref={naverRef} id="naverIdLogin"></div>
             <button onClick={handleClick} className="naver" >
                 <img src={require('../../commons/images/naver/btnG_icon_square.png')} alt="naver" />
-                Login with Naver
+                네이버 로그인
             </button>
         </>
     );
