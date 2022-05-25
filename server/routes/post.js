@@ -29,10 +29,9 @@ router.post("/submit", (req, res) => {
         .exec()
         .then((userInfo) => {
           //그 유저의 uid를 author로 지정
-          temp.author = userInfo._id;
+          temp.author = userInfo._id; //_id입니다. 제발. 고치지마세요
           const CommunityPost = new Post(temp);
           CommunityPost.save().then(() => {
-            console.log(temp);
             Counter.updateOne(
               { name: "counter" },
               { $inc: { postNum: 1 } }
