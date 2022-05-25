@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UploadDiv, UploadForm, UploadButtonDiv } from "../../Style/UploadCSS";
@@ -11,7 +11,7 @@ function Upload(props) {
   const [Content, setContent] = useState("");
   const [Image, setImage] = useState("");
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.userData); //userData라는 obj를 끝까지 파고들어야했음
+  const user = useSelector((state) => state.user); //userData라는 obj를 끝까지 파고들어야했음
   //store와 reducer로 받아옴 user
 
   console.log("현재 로그인되어있는 유저", user);
