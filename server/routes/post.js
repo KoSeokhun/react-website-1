@@ -13,22 +13,26 @@ const { User } = require("../models/User.js");
 
 //글 제출
 router.post("/submit", (req, res) => {
-  console.log("16line" + req.body); // -여기서 지금 uid가 안나온다.
+  //클라에서 제목, 내용, 이미지를 들고와서 요청
   let temp = {
     title: req.body.title,
     content: req.body.content,
     image: req.body.image,
   };
+  //카운터1개올려주면서 글번호지정
   Counter.findOne({ name: "counter" })
     .exec()
     .then((counter) => {
       temp.postNum = counter.postNum;
+      //요청할때보내온 uid를 _id로 가지는 user 검색
       User.findOne({ _id: req.body.uid }) // _id가 DB에 지정된 이름. 키값 정확히 지정해줘야함
         .exec()
         .then((userInfo) => {
+          //그 유저의 uid를 author로 지정
           temp.author = userInfo._id;
           const CommunityPost = new Post(temp);
           CommunityPost.save().then(() => {
+            console.log(temp);
             Counter.updateOne(
               { name: "counter" },
               { $inc: { postNum: 1 } }
