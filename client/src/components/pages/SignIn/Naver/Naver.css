@@ -1,19 +1,23 @@
 .naver {
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    width: 196px;
+    font-weight: 500;
+    height: 32px;
     cursor: pointer;
-    padding: 0.6em 1em;
-    border-radius: 0.25em;
-    font-size: 0.8rem;
-    margin-top: 0.7em;
+    background-color: #03C75A;
     display: flex;
     align-items: center;
-    font-weight: 400;
-    box-shadow: var(--shadow-1);
-    background-color: #03C75A;
+    justify-content: center;
+    padding: 4px 0px;
+    margin: auto;
+    margin-top: 0.7em;
     color: white;
 }
 
 .naver img {
-    height: 0.9rem;
+    height: 1.2rem;
     margin-right: 0.7em;
     margin-left: 0.2em;
 }

@@ -11,16 +11,24 @@ const buttonBlock = {
     border: 'none',
     borderRadius: '9px',
     fontSize: '17px',
-    width: '284px',
+    width: '196px',
     fontWeight: '500',
     height: '32px',
     cursor: 'pointer',
-    background: '#fae101',
-    alignItems: 'center',
+    background: '#FEE500',
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
     padding: '4px 0px',
+    margin: 'auto',
+    marginTop: '0.7em',
 };
+
+const ButtonImage = styled.img`
+  height: 1.2rem;
+  margin-right: 0.7em;
+  margin-left: 0.2em;
+`;
 
 const ButtoninnerText = styled.h3`
   margin: 0;
@@ -69,7 +77,8 @@ const Kakao = () => {
                 onLogout={console.info}
                 style={buttonBlock}
             >
-                <ButtoninnerText>카카오 계정으로 로그인</ButtoninnerText>
+                <ButtonImage src={require('../../commons/images/kakao/kakaolink_btn_small.png')} alt="naver" />
+                <ButtoninnerText>카카오 로그인</ButtoninnerText>
             </KaKaoLogin>
             {formErrorMessage && (
                 <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>

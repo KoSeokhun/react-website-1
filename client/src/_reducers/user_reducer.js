@@ -8,6 +8,7 @@ import {
     IS_EMAIL_SENT,
     DELETE_TOKEN,
     RESET_PASSWORD,
+    MODIFY_USER,
 } from "../_actions/types";
 
 const reducer = (state = {}, action) => {
@@ -30,6 +31,8 @@ const reducer = (state = {}, action) => {
             return { ...state, deleteSuccess: action.payload }
         case RESET_PASSWORD:
             return { ...state, resetSuccess: action.payload }
+        case MODIFY_USER:
+            return { ...state, modifySuccess: action.payload }
         default:
             return state;
     }
