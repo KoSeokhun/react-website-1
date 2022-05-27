@@ -31,10 +31,10 @@ function Navbar() {
   window.addEventListener("resize", showButton);
 
   const changeBackground = () => {
-    if(window.scrollY >= 80) {
+    if (window.scrollY >= 80) {
       setNavbar(true);
 
-    }else {
+    } else {
       setNavbar(false);
     }
   };

@@ -69,7 +69,7 @@ function SignUp() {
 
     return (
         <>
-            <h1 className="sign-up-h1">SIGN UP</h1>
+            {/* <h1 className="sign-up-h1">SIGN UP</h1> */}
             <Formik
                 initialValues={{
                     email: '',
@@ -137,9 +137,9 @@ function SignUp() {
                     return (
                         <div className="sign-up">
                             <Title level={2} style={{ textAlign: 'center' }}>Sign up</Title>
-                            <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
+                            <Form className='sign-up-form' {...formItemLayout} onSubmit={handleSubmit} >
 
-                                <Form.Item required label="Name">
+                                <Form.Item required label="Name" className="sign-up-form-item">
                                     <Input
                                         id="name"
                                         placeholder="Enter your name"
@@ -151,12 +151,12 @@ function SignUp() {
                                             errors.name && touched.name ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.name && touched.name && (
-                                        <div className="input-feedback">{errors.name}</div>
-                                    )}
+                                    {(errors.name && touched.name) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.name}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
-                                <Form.Item required label="Nickname">
+                                <Form.Item required label="Nickname" className="sign-up-form-item">
                                     <Input
                                         id="Nickname"
                                         placeholder="Enter your Nickname"
@@ -168,12 +168,12 @@ function SignUp() {
                                             errors.Nickname && touched.Nickname ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.Nickname && touched.Nickname && (
-                                        <div className="input-feedback">{errors.Nickname}</div>
-                                    )}
+                                    {(errors.Nickname && touched.Nickname) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.Nickname}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
-                                <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? 'error' : touched.email ? 'success' : ''}>
+                                <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? 'error' : touched.email ? 'success' : ''} className="sign-up-form-item">
                                     <Input
                                         id="email"
                                         placeholder="Enter your Email"
@@ -185,12 +185,12 @@ function SignUp() {
                                             errors.email && touched.email ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.email && touched.email && (
-                                        <div className="input-feedback">{errors.email}</div>
-                                    )}
+                                    {(errors.email && touched.email) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.email}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
-                                <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? 'error' : touched.password ? 'success' : ''}>
+                                <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? 'error' : touched.password ? 'success' : ''} className="sign-up-form-item">
                                     <Input
                                         id="password"
                                         placeholder="Enter your password"
@@ -202,12 +202,12 @@ function SignUp() {
                                             errors.password && touched.password ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.password && touched.password && (
-                                        <div className="input-feedback">{errors.password}</div>
-                                    )}
+                                    {(errors.password && touched.password) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.password}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
-                                <Form.Item required label="Confirm" hasFeedback>
+                                <Form.Item required label="Confirm" hasFeedback className="sign-up-form-item">
                                     <Input
                                         id="confirmPassword"
                                         placeholder="Enter your confirmPassword"
@@ -219,16 +219,16 @@ function SignUp() {
                                             errors.confirmPassword && touched.confirmPassword ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.confirmPassword && touched.confirmPassword && (
-                                        <div className="input-feedback">{errors.confirmPassword}</div>
-                                    )}
+                                    {(errors.confirmPassword && touched.confirmPassword) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.confirmPassword}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
-                                <Form.Item {...tailFormItemLayout} >
-                                    <Button onClick={handleSubmit} type="primary" style={{ minWidth: '5rem', marginLeft: '5%', marginRight: '10%' }} disabled={isSubmitting} >
+                                <Form.Item {...tailFormItemLayout} className="sign-up-form-item">
+                                    <Button onClick={handleSubmit} type="primary" className="sign-up-form-left-button" disabled={isSubmitting} >
                                         Submit
                                     </Button>
-                                    <Button onClick={handleReset} type="primary" style={{ minWidth: '5rem', marginRight: '10%' }}>
+                                    <Button onClick={handleReset} type="primary" className="sign-up-form-right-button">
                                         Reset
                                     </Button>
                                 </Form.Item>

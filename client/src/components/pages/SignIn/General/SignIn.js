@@ -12,6 +12,7 @@ import Naver from "../Naver/Naver";
 import Modal from "../../commons/Modal/Modal";
 import ResetUser from "../../ResetUser/ResetUser";
 import moment from "moment";
+import './SignIn.css';
 
 const { Title } = Typography;
 
@@ -103,17 +104,20 @@ function SignIn() {
                         // handleReset,
                     } = props;
                     return (
-                        <div className="app" style={{ paddingTop: '5rem', width: '350px', margin: '0 auto' }} >
+                        <div className='sign-in' >
 
-                            <Title level={2} style={{ textAlign: 'center' }}>Log In</Title>
+                            <Title level={2} className='sign-in-title'>Log In</Title>
                             {/* <form onSubmit={handleSubmit} style={{ width: '350px' }}> */}
                             <form className="login-form" onSubmit={handleSubmit} >
 
-                                <Form.Item required>
+                                <Form.Item required className="sign-in-form-input">
                                     <Input
                                         id="email"
                                         prefix={
-                                            <UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />
+                                            <>
+                                                <UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />
+                                                &nbsp;
+                                            </>
                                         }
                                         placeholder="Enter your email"
                                         type="email"
@@ -124,16 +128,19 @@ function SignIn() {
                                             errors.email && touched.email ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.email && touched.email && (
-                                        <div className="input-feedback">{errors.email}</div>
-                                    )}
+                                    {(errors.email && touched.email) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.email}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
-                                <Form.Item required>
+                                <Form.Item required className="sign-in-form-input">
                                     <Input
                                         id="password"
                                         prefix={
-                                            <LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />
+                                            <>
+                                                <LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />
+                                                &nbsp;
+                                            </>
                                         }
                                         placeholder="Enter your password"
                                         type="password"
@@ -144,57 +151,42 @@ function SignIn() {
                                             errors.password && touched.password ? 'text-input error' : 'text-input'
                                         }
                                     />
-                                    {errors.password && touched.password && (
-                                        <div className="input-feedback">{errors.password}</div>
-                                    )}
+                                    {(errors.password && touched.password) ? (
+                                        <div className="input-feedback" style={{ color: "rgb(171, 138, 247)", }}>{errors.password}</div>
+                                    ) : (<div>&nbsp;</div>)}
                                 </Form.Item>
 
                                 {formErrorMessage && (
                                     <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
                                 )}
 
+                                <Form.Item >
+                                    <Button type="primary" htmlType="submit" className="sign-in-form-button" disabled={isSubmitting} onSubmit={handleSubmit}>
+                                        Log in
+                                    </Button>
+                                </Form.Item>
+
                                 <Form.Item>
-                                    <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
-
-                                    <Button onClick={openModal} style={{ float: 'right' }}>forgot email / password</Button>
-
-                                    <div>
-                                        <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
-                                            Log in
-                                        </Button>
-                                    </div>
+                                    <Checkbox id="rememberMe" className="sign-in-form-item" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
+                                </Form.Item>
+                                <div className="sign-in-form-item">
+                                    Or <a href="/sign-up">register now!</a>
+                                </div>
+                                <Form.Item>
+                                    <Button onClick={openModal} className="sign-in-form-button" style={{ marginBottom: '2rem', }}>forgot email / password</Button>
                                 </Form.Item>
                             </form>
-                            Or <a href="/sign-up">register now!</a>
-                            <Modal open={modalOpen} close={closeModal} header="Find your email / password">
-                                <ResetUser />
-                            </Modal>
+
+                            <Kakao />
+                            <Naver />
+
                         </div>
                     );
                 }}
             </Formik>
-            <Kakao />
-            <Naver />
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
+            <Modal open={modalOpen} close={closeModal} header="Find your email / password">
+                <ResetUser />
+            </Modal>
         </>
     );
 };
