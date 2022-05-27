@@ -18,12 +18,13 @@ function HeroSection() {
                     path='sign-up'>
                     GET STARTED
                 </Button>
-                <Button className='btns'
+                {/* <Button className='btns'
                     buttonStyle='btn--primary'
                     buttonSize='btn--large'
                     path='sign-in'>
-                    WATCH TRAILER <i className='far fa-play-circle' />
-                </Button>
+                    LOGIN 
+                    <i className='far fa-play-circle' />
+                </Button> */}
             </div>
         </div>
     )

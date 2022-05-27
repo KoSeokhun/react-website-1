@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../../App.css';
 import Store_Cards from '../commons/Cards/Store_Cards';
-import Store_Cards2 from '../commons/Cards/Store_Cards2';
+
 import MainImage from './Sections/MainImage';
 import { API_URL, API_KEY, MAIN_IMAGE_URL, SHOP_IMAGE_URL } from '../../Config';
 import GridCards from './GridCards';
@@ -36,7 +36,7 @@ export default function Store() {
         //console.log(response.ListPriceModelStoreService);
         setShopdata(response.ListPriceModelStoreService.row);
         setMainShopImage('https://images.unsplash.com/photo-1455849318743-b2233052fcff?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338')
-        setCurrentPage(response.ListPriceModelStoreService.row)
+       // setCurrentPage(response.ListPriceModelStoreService.row)
 
         // setMovies([...Movies, ...response.results])
         // setMainMovieImage(response.results[0])
@@ -55,8 +55,6 @@ export default function Store() {
     fetchShops(endpoint)
 
   }
-
-
 
 
 

@@ -5,6 +5,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import GridCards from '../Store/GridCards';
 import { Row } from 'antd';
 import Auth from '../../../hoc/auth';
+import './StoreDetail.css'
 
 function StoreDetail(props) {
 
@@ -68,27 +69,51 @@ function StoreDetail(props) {
           {
             shopData &&
             <>
-              <div style={{ width: '100%', margin: '0' }}>
+              <div align="center" style={{ width: '100%', margin: '0' }}>
 
                 <img src={shopData.SH_PHOTO} />
+                
               </div>
-              <div className="box" key={shopData.SH_ID}>
-                <div>{shopData.SH_NAME}</div>
-                <br></br>
-                <div>{shopData.SH_ADDR}</div>
-                <br></br>
-                <div> {shopData.SH_INFO}</div>
-                <br></br>
-                <div> {shopData.INDUTY_CODE_SE_NAME}</div>
-                <br></br>
-                <div> {shopData.SH_PHONE}</div>
-                <br></br>
-                <div> {shopData.SH_WAY}</div>
-                <br></br>
-                <div> {shopData.SH_PRIDE}</div>
+              <br></br>
+              <br></br>
+              <div className="box" align="center" key={shopData.SH_ID}>
 
+                <table id="store_detail" align="center">
 
+                  <tr>
+                    <td className='store_detail_category'>가게 이름 </td>
+                    <td>{shopData.SH_NAME}</td>
+                </tr>
+                <tr>
+                  <td className='store_detail_category'>주소</td>
+                  <td>{shopData.SH_ADDR}</td>
+                </tr>
+                <tr>
+                  <td className='store_detail_category'>가게 정보</td>
+                  <td>{shopData.SH_INFO}</td>
+                </tr>
+                <tr>
+                  <td className='store_detail_category'>업종</td>
+                  <td>{shopData.INDUTY_CODE_SE_NAME}</td>
+                </tr>
+                <tr>
+                  <td className='store_detail_category'>전화번호</td>
+                  <td>02-{shopData.SH_PHONE}</td>
+                </tr>
+                <tr>
+                  <td className='store_detail_category'>찾아오시는 길</td>
+                  <td>{shopData.SH_WAY}</td>
+                </tr>
+                <tr>
+                  <td className='store_detail_category'>자랑거리</td>
+                  <td>{shopData.SH_PRIDE}</td>
+                </tr>
+        
+
+                </table>
               </div>
+
+              
             </>
 
 
