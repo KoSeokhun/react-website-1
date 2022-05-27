@@ -8,7 +8,8 @@ import "moment/locale/ko";
 
 function List(props) {
   const user = useSelector((state) => state.user.userData); //값이 로딩안된이유:순서다~!~!
-  console.log(user);
+  console.log("현재 유저", user);
+  console.log("PostList", props);
   //이 props는 ComMain.js의 PostList = {PostList}
   const SetTime = (a, b) => {
     if (a !== b) {
@@ -21,6 +22,7 @@ function List(props) {
     <ListDiv>
       {/* 여기서 게시글 전체 수(index)를 키값으로 주고 
       그만큼 post라는 이름으로 데이터 돌려줌 */}
+
       {props.PostList.map((post, index) => {
         return (
           <ListItem key={index}>
@@ -39,7 +41,7 @@ function List(props) {
             >
               <p className="title">{post.title}</p>
               <div className="author">
-                <p> {post.author.Nickname}</p>
+                <p> {/*post.author.Nickname*/}</p>
                 <p className="time">
                   {SetTime(post.createdAt, post.updatedAt)}
                 </p>

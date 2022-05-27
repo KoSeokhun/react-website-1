@@ -21,10 +21,11 @@ function Upload(props) {
       return alert("모든 항목을 채워주세요");
     }
     let body = {
+      //제목, 내용, 이미지, user의 (user스키마의 고유 _id)
       title: Title,
       content: Content,
       image: Image,
-      uid: user._id, //데이터저장한것과 일치한것으로 불러와야하고
+      uid: user.userData._id, //데이터저장한것과 일치한것으로 불러와야하고
     };
     //console.log("28 line" + JSON.stringify(body));
     axios
