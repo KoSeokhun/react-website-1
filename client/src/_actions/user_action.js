@@ -10,6 +10,7 @@ import {
     DELETE_TOKEN,
     RESET_PASSWORD,
     MODIFY_USER,
+    DELETE_USER,
 } from "./types";
 
 export function loginUser(dataToSubmit) {
@@ -98,6 +99,16 @@ export function modifyUser(dataToSubmit) {
 
     return {
         type: MODIFY_USER,
+        payload: request
+    }
+}
+
+export function deleteUser(dataToSubmit) {
+    const request = axios.post('/api/users/deleteUser', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: DELETE_USER,
         payload: request
     }
 }

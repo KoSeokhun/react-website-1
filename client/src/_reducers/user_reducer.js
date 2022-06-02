@@ -9,6 +9,7 @@ import {
     DELETE_TOKEN,
     RESET_PASSWORD,
     MODIFY_USER,
+    DELETE_USER,
 } from "../_actions/types";
 
 const reducer = (state = {}, action) => {
@@ -33,6 +34,8 @@ const reducer = (state = {}, action) => {
             return { ...state, resetSuccess: action.payload }
         case MODIFY_USER:
             return { ...state, modifySuccess: action.payload }
+        case DELETE_USER:
+            return { ...state, deleteSuccess: action.payload }
         default:
             return state;
     }
