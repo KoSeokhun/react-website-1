@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const config = require("./config/key"); //key 설정 모듈
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 const mongoose = require("mongoose");
 
 mongoose
@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/data", require("./routes/data"));
 app.use("/api/post", require("./routes/post"));
+app.use("/api/reply", require("./routes/reply"));
 //app.use('/api/favorite', require('./routes/favorite'));
 
 //use this to show the image you have in node js server to client (react js)

@@ -8,7 +8,7 @@ import Home from "./pages/Home/Home";
 import Services from "./pages/Services/Services";
 import Products from "./pages/Products/Products";
 import SignUp from "./pages/SignUp/SignUp";
-import Community from "./pages/Community/List";
+//import Community from "./pages/Community/List";
 import Store from "./pages/Store/Store";
 import Wtg from "./pages/Wtg/Wtg";
 import SignIn from "./pages/SignIn/General/SignIn";
@@ -18,13 +18,14 @@ import Undefined from "./pages/Undefined/Undefined";
 import Recruitment from "./pages/Recruitment/Recruitment";
 import Information from "./pages/Recruitment/Information/Information";
 import Upload from "./pages/Community/Upload";
-import Detail from "./pages/Community/Detail";
+//import Detail from "./pages/Community/Detail";
 import Edit from "./pages/Community/Edit";
 import ComMain from "./pages/Community/ComMain";
 import ResetPassword from "./pages/ResetUser/ResetPassword";
-import StoreDetail from './pages/StoreDetail/StoreDetail';
-import WtgDetail from './pages/WtgDetail/WtgDetail';
-import Auth from "../hoc/auth"
+import StoreDetail from "./pages/StoreDetail/StoreDetail";
+import WtgDetail from "./pages/WtgDetail/WtgDetail";
+//import Auth from "../hoc/auth";
+import PostArea from "./pages/Community/PostArea";
 
 function App() {
   // BottomNavbar on, off
@@ -53,15 +54,14 @@ function App() {
         <Navbar />
         <Routes>
           {/* Features page */}
-          <Route exact path='/' element={<Home />} />
-          <Route path='/store' element={<Store />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/store" element={<Store />} />
           {/* <Route path='/store/:shopId' element={<StoreDetail />} /> */}
-          <Route path='/wtg' element={<Wtg />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route exact path="/store/:shopId" element={<StoreDetail/>} />
-          <Route exact path="/wtg/:gongId" element={<WtgDetail/>} />
+          <Route path="/wtg" element={<Wtg />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route exact path="/store/:shopId" element={<StoreDetail />} />
+          <Route exact path="/wtg/:gongId" element={<WtgDetail />} />
           <Route path="/community" element={<ComMain />} />
-
 
           {/* 추가 */}
           <Route path="/services" element={<Services />} />
@@ -77,7 +77,7 @@ function App() {
 
           <Route path="/upload" element={<Upload />} />
           <Route path="/list" element={<ComMain />} />
-          <Route path="/post/:postNum" element={<Detail />}></Route>
+          <Route path="/post/:postNum" element={<PostArea />}></Route>
           <Route path="/edit/:postNum" element={<Edit />}></Route>
 
           {/* Register/Login page */}

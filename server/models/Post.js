@@ -13,6 +13,10 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", //User스키마에 대한 모든 데이터가 author이라는 이름으로 Post스키마에 저장되는거야~
     },
+    replyNum: {
+      type: Number,
+      default: 0,
+    },
   },
   { collection: "posts", timestamps: true }
   //timestamps 지정: createdAt, updatedAt 으로 생성시간, 수정시간 알 수 있음
