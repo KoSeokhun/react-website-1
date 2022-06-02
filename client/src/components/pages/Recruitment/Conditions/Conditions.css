@@ -1,0 +1,10 @@
+.career-type-input {
+    margin: 1rem;
+    max-width: 5rem;
+    text-align: right;
+}
+
+.career-type-checkbox {
+    display: flex;
+    justify-content: flex-start;
+}

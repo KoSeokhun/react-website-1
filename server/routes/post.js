@@ -13,7 +13,7 @@ const { User } = require("../models/User.js");
 
 //글 제출
 router.post("/submit", (req, res) => {
-  console.log("16line" + req.body); // -여기서 지금 uid가 안나온다.
+  // console.log("16line" + req.body); // -여기서 지금 uid가 안나온다.
   let temp = {
     title: req.body.title,
     content: req.body.content,
@@ -71,7 +71,7 @@ router.post("/detail", (req, res) => {
     .populate("author")
     .exec()
     .then((doc) => {
-      console.log("글 세부 데이터", doc);
+      // console.log("글 세부 데이터", doc);
       res.status(200).json({ success: true, post: doc });
     })
     .catch((err) => {
