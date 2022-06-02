@@ -339,6 +339,20 @@ router.post('/modifyUser', (req, res) => {
     });
 });
 
+router.post('/deleteUser', (req, res) => {
+    const id = { _id: req.body._id };
+
+    User.findByIdAndDelete(id, (err, user) => {
+        if (err) return res.json({
+            deleteSuccess: false,
+            err
+        });
+        return res.status(200).json({
+            deleteSuccess: true,
+        });
+    });
+});
+
 router.get('/logout', auth, (req, res) => {
 
     User.findOneAndUpdate(

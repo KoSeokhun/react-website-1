@@ -9,3 +9,4 @@ export const RESET_PASSWORD = "reset_password";
 export const IS_EMAIL_SENT = "is_email_sent";
 export const DELETE_TOKEN = "delete_token";
 export const MODIFY_USER = "modify_user";
+export const DELETE_USER = "delete_user";
