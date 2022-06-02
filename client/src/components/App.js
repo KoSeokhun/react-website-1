@@ -23,6 +23,8 @@ import Edit from "./pages/Community/Edit";
 import ComMain from "./pages/Community/ComMain";
 import ResetPassword from "./pages/ResetUser/ResetPassword";
 import StoreDetail from './pages/StoreDetail/StoreDetail';
+import WtgDetail from './pages/WtgDetail/WtgDetail';
+import Auth from "../hoc/auth"
 
 function App() {
   // BottomNavbar on, off
@@ -56,7 +58,8 @@ function App() {
           {/* <Route path='/store/:shopId' element={<StoreDetail />} /> */}
           <Route path='/wtg' element={<Wtg />} />
           <Route path='/profile' element={<Profile />} />
-          <Route exact path="/store/:shopId" element={<StoreDetail />} />
+          <Route exact path="/store/:shopId" element={<StoreDetail/>} />
+          <Route exact path="/wtg/:gongId" element={<WtgDetail/>} />
           <Route path="/community" element={<ComMain />} />
 
 

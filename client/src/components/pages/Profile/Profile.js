@@ -6,6 +6,8 @@ import './Profile.css'
 import GenerateToken from '../SendEmail/GenerateToken';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import Modal from "../commons/Modal/Modal";
+import DeleteUser from '../DeleteUser/DeleteUser';
 
 import {
     Form,
@@ -76,13 +78,25 @@ function Profile() {
     const [role, setrole] = useState('');
     const [image, setimage] = useState('');
 
+    // Modify profile information
     const [ModifyMode, setModifyMode] = useState(false);
+
     const modifyModeOn = () => {
         setModifyMode(true);
     }
     const modifyModeOff = () => {
         setModifyMode(false);
     }
+
+    // Forgot email, password modal
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     return (
         <>
@@ -226,6 +240,12 @@ function Profile() {
 
                 </>
             }
+            <div id='wrapper' className="wrapper" >
+                <Button onClick={openModal} className="profile-button">회원 탈퇴</Button>
+            </div>
+            <Modal open={modalOpen} close={closeModal} header="Delete your account">
+                <DeleteUser />
+            </Modal>
         </>
     )
 }
