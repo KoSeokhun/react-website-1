@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ReplyContents from "./ReplyContents";
+import { ReplyListDiv } from "../Style/ReplyCSS";
 
 function ReplyList(props) {
   //props 들어옴
@@ -17,11 +19,11 @@ function ReplyList(props) {
   }, []);
   return (
     <>
-      <div>
+      <ReplyListDiv>
         {ReplyList.map((reply, idx) => {
-          return <div key={idx}>{reply.reply}</div>;
+          return <ReplyContents reply={reply} key={idx} />;
         })}
-      </div>
+      </ReplyListDiv>
     </>
   );
 }

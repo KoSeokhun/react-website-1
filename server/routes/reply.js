@@ -10,9 +10,10 @@ router.post("/submit", (req, res) => {
     reply: req.body.reply,
     postId: req.body.postId,
   };
-  User.findOne({ uid: req.body.uid })
+  User.findOne({ _id: req.body.uid })
     .exec()
     .then((userInfo) => {
+      console.log(userInfo);
       temp.author = userInfo._id;
       const NewReply = new Reply(temp);
       NewReply.save(() => {

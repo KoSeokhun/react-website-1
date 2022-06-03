@@ -3,7 +3,7 @@ import Detail from "./Detail";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import ReplyArea from "../../Reply.js/ReplyArea";
+import ReplyArea from "../../Reply/ReplyArea";
 
 import { Spinner } from "react-bootstrap";
 import { SpinnerDiv } from "../../Style/PostDetailCSS";

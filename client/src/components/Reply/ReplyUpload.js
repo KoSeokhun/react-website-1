@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Auth from "../../hoc/auth";
+import { ReplyUploadDiv } from "../Style/ReplyCSS";
 
 function ReplyUpload(props) {
   //ReplyArea로부터 받은 props
@@ -33,7 +34,7 @@ function ReplyUpload(props) {
     });
   };
   return (
-    <div>
+    <ReplyUploadDiv>
       <form>
         <input
           type="text"
@@ -50,7 +51,7 @@ function ReplyUpload(props) {
           등록
         </button>
       </form>
-    </div>
+    </ReplyUploadDiv>
   );
 }
 

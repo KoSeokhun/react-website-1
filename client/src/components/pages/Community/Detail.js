@@ -43,14 +43,14 @@ function Detail(props) {
         });
     }
   };
-  console.log("detail.js 46", props.PostInfo);
-  console.log("detail.js 47", user.userData);
+  //  console.log("detail.js 46", props.PostInfo);
+  console.log("detail.js 48", user.userData);
   return (
     <PostDiv>
       <Post>
         <h1>{props.PostInfo.title}</h1>
         <div className="author">
-          <h3>{props.PostInfo.nickname}</h3>
+          <h3>{props.PostInfo.author.Nickname}</h3>
           {/* 아바타 컴포넌트 들어갈 자리 */}
           <p className="time">
             {SetTime(props.PostInfo.createdAt, props.PostInfo.updatedAt)}

@@ -41,7 +41,7 @@ function List(props) {
             >
               <p className="title">{post.title}</p>
               <div className="author">
-                <p> {/*post.author.Nickname*/}</p>
+                <p> {post.author.Nickname}</p>
                 <p className="time">
                   {SetTime(post.createdAt, post.updatedAt)}
                 </p>
