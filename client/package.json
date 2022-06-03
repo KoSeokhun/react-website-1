@@ -16,6 +16,7 @@
     "moment": "^2.29.3",
     "monent": "^0.0.2-security",
     "react": "^18.0.0",
+    "react-avatar": "^5.0.1",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.0.0",
     "react-kakao-login": "^2.1.0",

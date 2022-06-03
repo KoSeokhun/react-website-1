@@ -4,8 +4,9 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/ko";
+import Avatar from "react-avatar";
 import { PostDiv, BtnDiv, Post } from "../../Style/PostDetailCSS";
-import Auth from "../../../hoc/auth";
+//import Auth from "../../../hoc/auth";
 
 function Detail(props) {
   let params = useParams(); //postNum 추적용: postNum에 가지고 있는 정보를 띄워주는 -> useParams
@@ -51,8 +52,15 @@ function Detail(props) {
       <Post>
         <h1>{props.PostInfo.title}</h1>
         <div className="author">
-          <h3>{props.PostInfo.author.Nickname}</h3>
-          {/* 아바타 컴포넌트 들어갈 자리 */}
+          <div>
+            <Avatar
+              size="40"
+              round={true}
+              src={user.userData.image}
+              style={{ border: "1px solid #c6c6c6" }}
+            />
+            <p>{props.PostInfo.author.Nickname}</p>
+          </div>
           <p className="time">
             {SetTime(props.PostInfo.createdAt, props.PostInfo.updatedAt)}
             {/* moment.js 라는 라이브러리 사용: 시간 라이브러리 */}

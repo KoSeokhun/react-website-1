@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ReplyContentDiv, ReplyUploadDiv } from "../Style/ReplyCSS";
 import axios from "axios";
+import Avatar from "react-avatar";
 
 function ReplyContents(props) {
   console.log("replycontents 7 전달된 props확인", props.reply);
@@ -56,11 +57,20 @@ function ReplyContents(props) {
   return (
     <ReplyContentDiv>
       <div className="author">
-        <p>
-          {props.reply.author === null
-            ? "(탈퇴한 회원)"
-            : props.reply.author.Nickname}
-        </p>
+        <div className="userInfo">
+          <Avatar
+            size="30"
+            round={true}
+            src={user.userData.image}
+            style={{ border: "1px solid #c6c6c6" }}
+          />
+          <p>
+            {props.reply.author === null
+              ? "(탈퇴한 회원)"
+              : props.reply.author.Nickname}
+          </p>
+        </div>
+
         {props.reply.author._id === user.userData._id ? (
           <div className="modalControl">
             <span onClick={() => setModalFlag(true)}>···</span>
