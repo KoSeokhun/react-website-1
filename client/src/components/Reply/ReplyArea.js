@@ -12,7 +12,7 @@ function ReplyArea(props) {
   return (
     <>
       <ReplyAreaDiv>
-        <ReplyUpload postId={props.postId} />
+        <ReplyUpload postNum={props.postNum} postId={props.postId} />
         {/* 로그인안하면 upload안보여주기 */}
         <ReplyList postId={props.postId} />
       </ReplyAreaDiv>

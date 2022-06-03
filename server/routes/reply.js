@@ -50,41 +50,42 @@ router.post("/replylist", (req, res) => {
     });
 });
 
-// //댓글 수정
-// router.post("/replyedit", (req, res) => {
-//   let temp = {
-//     //수정해야될수도있음
-//     postId: req.body.postId,
-//     reply: req.body.reply,
-//     uid: req.body.uid,
-//   };
-//   Reply.findOneAndUpdate({ _id: req.body.replyId }, { $set: temp })
-//     .exec()
-//     .then(() => {
-//       return res.status(200).json({ success: true });
-//     })
-//     .catch((err) => {
-//       return res.status(400).json({ success: false });
-//     });
-// });
+//댓글 수정
+router.post("/replyedit", (req, res) => {
+  let temp = {
+    postId: req.body.postId,
+    reply: req.body.reply,
+    uid: req.body.uid,
+  };
+  Reply.findOneAndUpdate({ _id: req.body.replyId }, { $set: temp })
+    .exec()
+    .then(() => {
+      return res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      return res.status(400).json({ success: false });
+    });
+});
 
-// //댓글 삭제
-// router.post("replydelete", (req, res) => {
-//   Reply.deleteOne({ _id: req.body.replyId })
-//     .exec()
-//     .then(() => {
-//       Post.fineOneandUpdate(
-//         { _id: req.body.postId },
-//         { $inc: { replyNum: -1 } }
-//       )
-//         .exec()
-//         .then(() => {
-//           return res.status(200).json({ success: true });
-//         });
-//     })
-//     .catch((err) => {
-//       return res.status(400).json({ success: false });
-//     });
-// });
+//댓글 삭제
+router.post("/replydelete", (req, res) => {
+  Reply.deleteOne({ _id: req.body.replyId })
+    .exec()
+    .then(() => {
+      Post.findOneAndUpdate(
+        { _id: req.body.postId },
+        { $inc: { replyNum: -1 } }
+      )
+        .exec()
+        .then(() => {
+          return res.status(200).json({ success: true });
+        });
+    })
+    .catch((err) => {
+      console.log("그냥 넘어오나?");
+      console.log(err);
+      return res.status(400).json({ success: false });
+    });
+});
 
 module.exports = router;

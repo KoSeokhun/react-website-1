@@ -5,6 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import "moment/locale/ko";
 import { PostDiv, BtnDiv, Post } from "../../Style/PostDetailCSS";
+import Auth from "../../../hoc/auth";
 
 function Detail(props) {
   let params = useParams(); //postNum 추적용: postNum에 가지고 있는 정보를 띄워주는 -> useParams
@@ -43,7 +44,7 @@ function Detail(props) {
         });
     }
   };
-  //  console.log("detail.js 46", props.PostInfo);
+  //console.log("detail.js 46", props.PostInfo);
   console.log("detail.js 48", user.userData);
   return (
     <PostDiv>
@@ -84,4 +85,4 @@ function Detail(props) {
 }
 
 export default Detail;
-//export default Auth(Detail, null); //Detail의 경우 로그인되어있는 유저만 페이지 입장 가능
+//export default Auth(Detail, true); //Detail의 경우 로그인되어있는 유저만 페이지 입장 가능

@@ -33,7 +33,7 @@ function PostArea() {
       {Flag ? (
         <>
           <Detail PostInfo={PostInfo} />
-          <ReplyArea postId={PostInfo._id} />
+          <ReplyArea postNum={PostInfo.postNum} postId={PostInfo._id} />
         </>
       ) : (
         <SpinnerDiv>
