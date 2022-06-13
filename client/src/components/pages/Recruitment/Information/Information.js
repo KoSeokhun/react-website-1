@@ -196,7 +196,7 @@ function Information() {
             <div className='wrapper'>
                 <h2>Information</h2>
                 <hr />
-                <div>
+                {/* <div>
                     <SelectModal text='경력선택' type='CareerType' Condition={CareerType} setCondition={setCareerType} />
                     {CareerType && JSON.stringify(CareerType)}
                     <SelectModal text='학력선택' type='Edu' Condition={Edu} setCondition={setEdu} />
@@ -205,7 +205,7 @@ function Information() {
                     {Location && Location}
                     <SelectModal text='연봉선택' type='Salary' Condition={Salary} setCondition={setSalary} />
                     {Salary && Salary}
-                </div>
+                </div> */}
 
                 <table>
                     <thead>

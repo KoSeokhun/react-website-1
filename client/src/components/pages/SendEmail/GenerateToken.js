@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { generateToken, isEmailSent, deleteToken, } from '../../../_actions/user_action';
 import moment from 'moment';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // 비밀번호 초기화 이메일 전송 버튼
 const GenerateToken = (props) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     // const [Activate, setActivate] = useState(true);
     const [Activate, setActivate] = useState(!props.disabled);
     const [Reason, setReason] = useState('');
@@ -39,6 +41,7 @@ const GenerateToken = (props) => {
             if (response.status === 200) {
                 window.localStorage.removeItem("userId");
                 alert("Log Out succeeded");
+                navigate('/');
             } else {
                 alert("Log Out Failed");
             }
